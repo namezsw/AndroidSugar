@@ -12,7 +12,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ToastUtils.showToastShort(this,"dfsfsf");
-        Logger.d("dsff");
+        ToastUtils.showToastShort(this,"hello sugar");
+        showlog();
+    }
+
+    private void showlog(){
+        Logger.d("hello sugar");
     }
 }

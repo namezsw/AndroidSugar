@@ -16,12 +16,31 @@ public abstract class BasicApplication extends Application {
     public static BasicApplication getInstance() {
         return appContext;
     }
+    public static String sdCardPath;//SdCard路径
 
     @Override
     public void onCreate() {
         super.onCreate();
         appContext = this;
+        //sdCard缓存路径
+        sdCardPath = getSdCardPath();
+        //SharePreference初始化
         SPUtils.init("utilcode");
-        Logger.init(true, false, 'v', "MyTag");
+        //Log初始化
+        Logger.init(getLogTag()).setLogLevel(Logger.LogLevel.FULL).setSaveLog(false);
     }
+
+    /**
+     * 设置调试日志标签名
+     *
+     * @return 调试日志标签名
+     */
+    protected abstract String getLogTag();
+
+    /**
+     * 设置sdCard路径
+     *
+     * @return sdCard路径
+     */
+    protected abstract String getSdCardPath();
 }

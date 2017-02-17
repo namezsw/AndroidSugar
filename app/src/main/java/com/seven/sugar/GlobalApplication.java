@@ -1,6 +1,9 @@
 package com.seven.sugar;
 
 import com.seven.library.BasicApplication;
+import com.seven.library.util.SDCardUtils;
+
+import java.io.File;
 
 import okhttp3.OkHttpClient;
 
@@ -16,5 +19,15 @@ public class GlobalApplication extends BasicApplication {
     public void onCreate() {
         super.onCreate();
 
+    }
+
+    @Override
+    protected String getLogTag() {
+        return "android_sugar";
+    }
+
+    @Override
+    protected String getSdCardPath() {
+        return SDCardUtils.getSDCardPath() + File.separator + getLogTag();
     }
 }

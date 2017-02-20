@@ -482,19 +482,6 @@ public class AppUtils {
     }
 
     /**
-     * 判断App是否处于前台
-     * <p>当不是查看当前App，且SDK大于21时，
-     * 需添加权限 {@code <uses-permission android:name="android.permission.PACKAGE_USAGE_STATS"/>}</p>
-     *
-     * @param context     上下文
-     * @param packageName 包名
-     * @return {@code true}: 是<br>{@code false}: 否
-     */
-    public static boolean isAppForeground(Context context, String packageName) {
-        return !StringUtils.isSpace(packageName) && packageName.equals(ProcessUtils.getForegroundProcessName());
-    }
-
-    /**
      * 封装App信息的Bean类
      */
     public static class AppInfo {

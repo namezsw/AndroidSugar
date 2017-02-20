@@ -722,6 +722,37 @@ public class FileUtils {
     }
 
     /**
+     * 保存文件
+     *
+     * @param in       文件输入流
+     * @param filePath 文件保存路径
+     */
+    public static File saveFile(InputStream in, String filePath) {
+        File file = new File(filePath);
+        byte[] buffer = new byte[4096];
+        int len = 0;
+        FileOutputStream fos = null;
+        try {
+            FileUtils.createOrExistsFile(file);
+            fos = new FileOutputStream(file);
+            while ((len = in.read(buffer)) != -1) {
+                fos.write(buffer, 0, len);
+            }
+            fos.flush();
+        } catch (IOException e) {
+            Logger.e(e);
+        } finally {
+            try {
+                if (in != null) in.close();
+                if (fos != null) fos.close();
+            } catch (IOException e) {
+                Logger.e(e);
+            }
+        }
+        return file;
+    }
+
+    /**
      * 将输入流写入文件
      *
      * @param filePath 路径

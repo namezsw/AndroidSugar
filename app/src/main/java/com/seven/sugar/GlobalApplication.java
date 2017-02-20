@@ -1,7 +1,14 @@
 package com.seven.sugar;
 
+import com.facebook.drawee.backends.pipeline.Fresco;
 import com.seven.library.BasicApplication;
+import com.seven.library.model.http.OkHttpManager;
+import com.seven.library.model.http.interceptor.CacheStrategyInterceptor;
+import com.seven.library.model.http.interceptor.HeaderInfoInterceptor;
+import com.seven.library.model.http.interceptor.NetworkInterceptor;
+import com.seven.library.util.AppUtils;
 import com.seven.library.util.SDCardUtils;
+import com.seven.library.view.image.ImagePipelineConfigFactory;
 
 import java.io.File;
 
@@ -13,12 +20,22 @@ import okhttp3.OkHttpClient;
  */
 public class GlobalApplication extends BasicApplication {
 
-    private static OkHttpClient mOkHttpClient;//OkHttpClient
-
     @Override
     public void onCreate() {
         super.onCreate();
+        //Fresco初始化
+        Fresco.initialize(getApplicationContext(),
+                ImagePipelineConfigFactory.getOkHttpImagePipelineConfig(getApplicationContext(), BasicApplication.getOkHttpClient()));
+    }
 
+
+    @Override
+    public OkHttpClient initOkHttpClient() {
+        return OkHttpManager.getInstance(getNetworkCacheDirectoryPath(), getNetworkCacheSize())
+                .addInterceptor(new NetworkInterceptor())
+                .addInterceptor(new CacheStrategyInterceptor())
+                .addInterceptor(new HeaderInfoInterceptor(AppUtils.getAppVersionName(this)))
+                .build();
     }
 
     @Override
@@ -29,5 +46,20 @@ public class GlobalApplication extends BasicApplication {
     @Override
     protected String getSdCardPath() {
         return SDCardUtils.getSDCardPath() + File.separator + getLogTag();
+    }
+
+    @Override
+    protected String getNetworkCacheDirectoryPath() {
+        return sdCardPath + File.separator + "http_cache";
+    }
+
+    @Override
+    protected int getNetworkCacheSize() {
+        return 20 * 1024 * 1024;
+    }
+
+    @Override
+    protected int getNetworkCacheMaxAgeTime() {
+        return 0;
     }
 }

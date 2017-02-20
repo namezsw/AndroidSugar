@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">Library</string>
+
+    <!--PullToRefreshLayout-->
+    <string name="pullToRefresh_prepare">下拉以刷新</string>
+    <string name="pullToRefresh_recycle">释放以更新</string>
+    <string name="pullToRefresh_loading">正在刷新,请等待</string>
+    <string name="pullToRefresh_complete">更新完成</string>
+
+    <string name="loadMore_loadingText">加载更多</string>
+    <string name="loadMore_noMoreText">没有更多内容了</string>
+
+    <string name="not_network">当前网络不可用</string>
+    <string name="fail_request">数据请求失败</string>
+    <string name="user_login_expire">长时间未登录，请重新登录</string>
+    <string name="not_cache">当前请求无缓存</string>
+
 </resources>

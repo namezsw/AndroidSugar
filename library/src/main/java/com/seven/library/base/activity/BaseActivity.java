@@ -1,4 +1,4 @@
-package com.seven.library.controller;
+package com.seven.library.base.activity;
 
 import android.app.Activity;
 import android.app.Service;
@@ -7,23 +7,21 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-import com.seven.library.model.http.OkHttpRequestHelper;
-import com.seven.library.model.http.callback.RequestCallback;
+import com.seven.library.base.presenter.IPresenter;
+import com.seven.library.controller.ActivityManager;
+import com.seven.library.controller.EventBusHelper;
 import com.seven.library.util.ToastUtils;
 
-import java.util.LinkedList;
-import java.util.List;
-
 import butterknife.ButterKnife;
-import okhttp3.Interceptor;
-import okhttp3.Request;
 
 /**
  * 基础Activity
- * OkHttp
- * Created by Seven on 2017/2/15.
+ * Retrofit + MVP
+ * Created by Seven on 2017/3/10.
  */
-public abstract class BasicActivity extends AppCompatActivity {
+public abstract class BaseActivity<P extends IPresenter> extends AppCompatActivity {
+
+    protected P mPresenter;
     protected Context mContext;
     protected Bundle args;
     private long exitTime = 0;
@@ -35,6 +33,8 @@ public abstract class BasicActivity extends AppCompatActivity {
      */
     protected abstract int getLayoutId();
 
+    protected abstract P createPresenter();
+
     /**
      * 布局初始化完成的回调
      *
@@ -42,44 +42,30 @@ public abstract class BasicActivity extends AppCompatActivity {
      */
     protected abstract void onViewCreatedFinish(Bundle saveInstanceState);
 
-    /**
-     * 收集本Activity请求时的url
-     *
-     * @return url
-     */
-    protected abstract String[] getRequestUrls();
-
     @Override
-    protected final void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         int layoutId = getLayoutId();
         if (layoutId == 0)
             throw new RuntimeException("找不到Layout资源,Fragment初始化失败!");
         setContentView(layoutId);
         ButterKnife.bind(this);
-        EventBusHelper.register(this);//注册EventBus
         ActivityManager.getInstance().addActivity(this);//添加当前Activity到管理堆栈
         mContext = this;
+        mPresenter = createPresenter();
         this.args = getIntent().getExtras() != null ? getIntent().getExtras() : new Bundle();
+        EventBusHelper.register(this);//注册EventBus
         //布局初始化完成的回调
         onViewCreatedFinish(savedInstanceState);
     }
 
     @Override
-    protected void onStop() {
-        super.onStop();
-        //Activity停止时取消所有请求
-        String[] urls = getRequestUrls();
-        for (String url : urls) {
-            OkHttpRequestHelper.newInstance().cancelRequest(url);
-        }
-    }
-
-    @Override
     protected void onDestroy() {
-        ActivityManager.getInstance().removeActivity(this);
         super.onDestroy();
+        ActivityManager.getInstance().removeActivity(this);
         EventBusHelper.unregister(this);//反注册EventBus
+        if (mPresenter != null)
+            mPresenter.onDestroy();
     }
 
     @Override
@@ -88,60 +74,6 @@ public abstract class BasicActivity extends AppCompatActivity {
             getSupportFragmentManager().popBackStack();
         else
             super.onBackPressed();
-    }
-
-    /**
-     * 网络请求
-     *
-     * @param request      request主体
-     * @param cacheType    缓存策略
-     * @param callback     请求回调(建议使用SimpleFastJsonCallback)
-     * @param interceptors 网络拦截器组
-     */
-    protected void networkRequest(Request request, int cacheType, RequestCallback callback, List<Interceptor> interceptors) {
-        if (request == null)
-            throw new NullPointerException("request为空");
-        OkHttpRequestHelper helper = OkHttpRequestHelper.newInstance();
-        if (interceptors != null && interceptors.size() > 0)
-            helper.addInterceptors(interceptors);
-        if (cacheType != -1)
-            helper.cacheType(cacheType);
-        helper.request(request, callback);
-    }
-
-    /**
-     * 网络请求
-     *
-     * @param request     request主体
-     * @param cacheType   缓存策略
-     * @param callback    请求回调(建议使用SimpleFastJsonCallback)
-     * @param interceptor 网络拦截器
-     */
-    protected void networkRequest(Request request, int cacheType, RequestCallback callback, Interceptor interceptor) {
-        List<Interceptor> interceptors = new LinkedList<>();
-        interceptors.add(interceptor);
-        networkRequest(request, cacheType, callback, interceptors);
-    }
-
-    /**
-     * 网络请求
-     *
-     * @param request   request主体
-     * @param cacheType 缓存策略
-     * @param callback  请求回调(建议使用SimpleFastJsonCallback)
-     */
-    protected void networkRequest(Request request, int cacheType, RequestCallback callback) {
-        networkRequest(request, cacheType, callback, new LinkedList<Interceptor>());
-    }
-
-    /**
-     * 网络请求
-     *
-     * @param request  request主体
-     * @param callback 请求回调(建议使用SimpleFastJsonCallback)
-     */
-    protected void networkRequest(Request request, RequestCallback callback) {
-        networkRequest(request, -1, callback);
     }
 
     /**
@@ -230,14 +162,6 @@ public abstract class BasicActivity extends AppCompatActivity {
         startService(intent);
     }
 
-
-    /**
-     * 双击退出App
-     */
-    protected boolean exit() {
-        return exit(2000);
-    }
-
     /**
      * 双击退出App
      *
@@ -251,6 +175,13 @@ public abstract class BasicActivity extends AppCompatActivity {
             ActivityManager.getInstance().finishAllActivity();
         }
         return true;
+    }
+
+    /**
+     * 双击退出App
+     */
+    protected boolean exit() {
+        return exit(2000);
     }
 
 }

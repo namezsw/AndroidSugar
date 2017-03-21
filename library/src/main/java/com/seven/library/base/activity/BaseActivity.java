@@ -9,7 +9,6 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.seven.library.base.presenter.IPresenter;
 import com.seven.library.controller.ActivityManager;
-import com.seven.library.controller.EventBusHelper;
 import com.seven.library.util.ToastUtils;
 
 import butterknife.ButterKnife;
@@ -54,7 +53,6 @@ public abstract class BaseActivity<P extends IPresenter> extends AppCompatActivi
         mContext = this;
         mPresenter = createPresenter();
         this.args = getIntent().getExtras() != null ? getIntent().getExtras() : new Bundle();
-        EventBusHelper.register(this);//注册EventBus
         //布局初始化完成的回调
         onViewCreatedFinish(savedInstanceState);
     }
@@ -63,7 +61,6 @@ public abstract class BaseActivity<P extends IPresenter> extends AppCompatActivi
     protected void onDestroy() {
         super.onDestroy();
         ActivityManager.getInstance().removeActivity(this);
-        EventBusHelper.unregister(this);//反注册EventBus
         if (mPresenter != null)
             mPresenter.onDestroy();
     }

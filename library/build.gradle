@@ -28,6 +28,7 @@ dependencies {
     })
     compile rootProject.ext.dependencies["support-v4"]
     compile rootProject.ext.dependencies["appcompat-v7"]
+    compile rootProject.ext.dependencies["design"]
     compile rootProject.ext.dependencies["recyclerview"]
     compile 'com.yqritc:recyclerview-flexibledivider:1.2.6'
     compile 'com.alibaba:fastjson:1.2.24'

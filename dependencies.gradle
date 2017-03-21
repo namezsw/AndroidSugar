@@ -2,7 +2,7 @@ def supportVersion = "25.1.0"
 
 project.ext {
     android = [
-            compileSdkVersion: 24,
+            compileSdkVersion: 25,
             buildToolsVersion: "25.0.2",
             applicationId    : "com.seven.sugar",
             minSdkVersion    : 14,

@@ -10,9 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.seven.library.base.presenter.IPresenter;
-import com.seven.library.controller.EventBusHelper;
 
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 /**
  * Created by Seven on 2017/3/10.
@@ -26,9 +26,7 @@ public abstract class BaseFragment<P extends IPresenter> extends Fragment {
     //fragment管理器
     protected FragmentManager mFragmentManager;
     protected Bundle args;//传递的参数值
-
-    private Fragment currentFragment;//当前Fragment
-    private Fragment targetFragment;//目标Fragment
+    private Unbinder unbinder;
 
     @Override
     public void onAttach(Context context) {
@@ -41,7 +39,6 @@ public abstract class BaseFragment<P extends IPresenter> extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         args = getArguments();
-        EventBusHelper.register(this);//注册EventBus
     }
 
     @Nullable
@@ -54,7 +51,7 @@ public abstract class BaseFragment<P extends IPresenter> extends Fragment {
         ViewGroup parent = (ViewGroup) mFragmentView.getParent();
         if (parent != null)
             parent.removeView(mFragmentView);
-        ButterKnife.bind(this, mFragmentView);
+        unbinder = ButterKnife.bind(this, mFragmentView);
         mPresenter = createPresenter();
         return mFragmentView;
     }
@@ -68,6 +65,7 @@ public abstract class BaseFragment<P extends IPresenter> extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        unbinder.unbind();
         if (mFragmentView != null)
             ((ViewGroup) mFragmentView.getParent()).removeView(mFragmentView);
     }
@@ -75,7 +73,6 @@ public abstract class BaseFragment<P extends IPresenter> extends Fragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        EventBusHelper.unregister(this);//反注册EventBus
         if (mPresenter != null)
             mPresenter.onDestroy();
     }

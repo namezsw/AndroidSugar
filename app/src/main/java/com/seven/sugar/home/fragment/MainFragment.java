@@ -1,20 +1,20 @@
-package com.seven.sugar;
+package com.seven.sugar.home.fragment;
 
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
-import android.view.View;
 import android.widget.TextView;
 
 import com.seven.library.base.fragment.BaseFragment;
 import com.seven.library.base.presenter.IPresenter;
+import com.seven.sugar.R;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
- * Created by bruce on 2016/11/1.
- * BaseFragment
+ * MainFragment
+ * Created by Seven on 2017/3/20.
  */
-
 public class MainFragment extends BaseFragment {
 
     @BindView(R.id.tv_info)
@@ -28,12 +28,6 @@ public class MainFragment extends BaseFragment {
     @Override
     public void onViewCreatedFinish(Bundle savedInstanceState) {
         tvInfo.setText(getArguments().getString("info"));
-        tvInfo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Snackbar.make(v, "Don't click me.please!.", Snackbar.LENGTH_SHORT).show();
-            }
-        });
     }
 
     @Override
@@ -41,4 +35,8 @@ public class MainFragment extends BaseFragment {
         return null;
     }
 
+    @OnClick(R.id.tv_info)
+    public void onClick() {
+        Snackbar.make(tvInfo, "Don't click me.please!.", Snackbar.LENGTH_SHORT).show();
+    }
 }

@@ -1,4 +1,4 @@
-package com.seven.sugar;
+package com.seven.sugar.home.activity;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -8,9 +8,13 @@ import android.view.MenuItem;
 
 import com.seven.library.base.activity.BaseActivity;
 import com.seven.library.base.presenter.IPresenter;
+import com.seven.library.view.viewpager.UnScrollableViewPager;
+import com.seven.sugar.R;
+import com.seven.sugar.home.adapter.ViewPagerAdapter;
+import com.seven.sugar.home.fragment.MainFragment;
+import com.seven.sugar.home.util.BottomNavigationViewHelper;
 
 import butterknife.BindView;
-
 
 /**
  * MainActivity
@@ -19,7 +23,7 @@ import butterknife.BindView;
 public class MainActivity extends BaseActivity {
 
     @BindView(R.id.view_pager)
-    ViewPager viewPager;
+    UnScrollableViewPager viewPager;
     @BindView(R.id.bottom_navigation)
     BottomNavigationView bottomNavigation;
 
@@ -55,7 +59,6 @@ public class MainActivity extends BaseActivity {
                         return false;
                     }
                 });
-
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -77,16 +80,7 @@ public class MainActivity extends BaseActivity {
             public void onPageScrollStateChanged(int state) {
             }
         });
-
-        //禁止ViewPager滑动
-//        viewPager.setOnTouchListener(new View.OnTouchListener() {
-//            @Override
-//            public boolean onTouch(View v, MotionEvent event) {
-//                return true;
-//            }
-//        });
-
-        setupViewPager(viewPager);
+        setupViewPager();
     }
 
     @Override
@@ -94,8 +88,7 @@ public class MainActivity extends BaseActivity {
         return null;
     }
 
-    private void setupViewPager(ViewPager viewPager) {
-
+    private void setupViewPager() {
         MainFragment fragment1 = new MainFragment();
         MainFragment fragment2 = new MainFragment();
         MainFragment fragment3 = new MainFragment();
@@ -112,14 +105,17 @@ public class MainActivity extends BaseActivity {
         fragment2.setArguments(args2);
         fragment3.setArguments(args3);
         fragment4.setArguments(args4);
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
 
+        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(fragment1);
         adapter.addFragment(fragment2);
         adapter.addFragment(fragment3);
         adapter.addFragment(fragment4);
         viewPager.setAdapter(adapter);
+        viewPager.setNoTouchScroll(true);
+        viewPager.setNoItemScroll(true);
+        viewPager.setOffscreenPageLimit(4);
+        viewPager.setCurrentItem(0);
     }
-
 
 }

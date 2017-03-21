@@ -1,4 +1,4 @@
-package com.seven.library.view.viewpager;
+package com.seven.library.view;
 
 import android.content.Context;
 import android.support.v4.view.ViewPager;
@@ -6,7 +6,7 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 
 /**
- * 不可滑动的ViewPager
+ * 可设置不可滑动的ViewPager
  * Created by Seven on 2017/3/20.
  */
 public class UnScrollableViewPager extends ViewPager {

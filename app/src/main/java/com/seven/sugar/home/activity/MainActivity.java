@@ -8,11 +8,11 @@ import android.view.MenuItem;
 
 import com.seven.library.base.activity.BaseActivity;
 import com.seven.library.base.presenter.IPresenter;
-import com.seven.library.view.viewpager.UnScrollableViewPager;
+import com.seven.library.view.BottomNavigationEnView;
+import com.seven.library.view.UnScrollableViewPager;
 import com.seven.sugar.R;
 import com.seven.sugar.home.adapter.ViewPagerAdapter;
 import com.seven.sugar.home.fragment.MainFragment;
-import com.seven.sugar.home.util.BottomNavigationViewHelper;
 
 import butterknife.BindView;
 
@@ -25,7 +25,7 @@ public class MainActivity extends BaseActivity {
     @BindView(R.id.view_pager)
     UnScrollableViewPager viewPager;
     @BindView(R.id.bottom_navigation)
-    BottomNavigationView bottomNavigation;
+    BottomNavigationEnView bottomNavigation;
 
     private MenuItem menuItem;
 
@@ -36,8 +36,8 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void onViewCreatedFinish(Bundle saveInstanceState) {
-        //默认 >3 的选中效果会影响ViewPager的滑动切换时的效果，故利用反射去掉
-        BottomNavigationViewHelper.disableShiftMode(bottomNavigation);
+        bottomNavigation.enableShiftingMode(false);
+        bottomNavigation.enableItemShiftingMode(false);
         bottomNavigation.setOnNavigationItemSelectedListener(
                 new BottomNavigationView.OnNavigationItemSelectedListener() {
                     @Override

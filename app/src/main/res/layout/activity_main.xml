@@ -5,14 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <com.seven.library.view.viewpager.UnScrollableViewPager
+    <com.seven.library.view.UnScrollableViewPager
         android:id="@+id/view_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:overScrollMode="never"
         android:layout_above="@+id/bottom_navigation" />
 
-    <android.support.design.widget.BottomNavigationView
+    <com.seven.library.view.BottomNavigationEnView
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

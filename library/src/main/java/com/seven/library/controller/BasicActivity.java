@@ -95,7 +95,7 @@ public abstract class BasicActivity extends AppCompatActivity {
      *
      * @param request      request主体
      * @param cacheType    缓存策略
-     * @param callback     请求回调(建议使用SimpleFastJsonCallback)
+     * @param callback     请求回调
      * @param interceptors 网络拦截器组
      */
     protected void networkRequest(Request request, int cacheType, RequestCallback callback, List<Interceptor> interceptors) {
@@ -114,7 +114,7 @@ public abstract class BasicActivity extends AppCompatActivity {
      *
      * @param request     request主体
      * @param cacheType   缓存策略
-     * @param callback    请求回调(建议使用SimpleFastJsonCallback)
+     * @param callback    请求回调
      * @param interceptor 网络拦截器
      */
     protected void networkRequest(Request request, int cacheType, RequestCallback callback, Interceptor interceptor) {
@@ -128,7 +128,7 @@ public abstract class BasicActivity extends AppCompatActivity {
      *
      * @param request   request主体
      * @param cacheType 缓存策略
-     * @param callback  请求回调(建议使用SimpleFastJsonCallback)
+     * @param callback  请求回调
      */
     protected void networkRequest(Request request, int cacheType, RequestCallback callback) {
         networkRequest(request, cacheType, callback, new LinkedList<Interceptor>());
@@ -138,7 +138,7 @@ public abstract class BasicActivity extends AppCompatActivity {
      * 网络请求
      *
      * @param request  request主体
-     * @param callback 请求回调(建议使用SimpleFastJsonCallback)
+     * @param callback 请求回调
      */
     protected void networkRequest(Request request, RequestCallback callback) {
         networkRequest(request, -1, callback);

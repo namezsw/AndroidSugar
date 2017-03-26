@@ -9,6 +9,7 @@ import com.seven.library.model.http.interceptor.NetworkInterceptor;
 import com.seven.library.util.AppUtils;
 import com.seven.library.util.SDCardUtils;
 import com.seven.library.view.image.ImagePipelineConfigFactory;
+import com.squareup.leakcanary.LeakCanary;
 
 import java.io.File;
 
@@ -23,6 +24,7 @@ public class GlobalApplication extends BasicApplication {
     @Override
     public void onCreate() {
         super.onCreate();
+        LeakCanary.install(this);
         //Fresco初始化
         Fresco.initialize(getApplicationContext(),
                 ImagePipelineConfigFactory.getOkHttpImagePipelineConfig(getApplicationContext(), BasicApplication.getOkHttpClient()));

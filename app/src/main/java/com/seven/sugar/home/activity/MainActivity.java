@@ -115,8 +115,6 @@ public class MainActivity extends BaseActivity {
         adapter.addFragment(fragment3);
         adapter.addFragment(fragment4);
         viewPager.setAdapter(adapter);
-        viewPager.setNoTouchScroll(true);
-        viewPager.setNoItemScroll(true);
         viewPager.setOffscreenPageLimit(4);
         viewPager.setCurrentItem(0);
     }

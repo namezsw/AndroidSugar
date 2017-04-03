@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.seven.library.base.ui.activity.BaseActivity;
+import com.seven.library.util.ToastUtils;
 import com.seven.sugar.R;
 import com.seven.sugar.home.model.bean.ChengYu;
 import com.seven.sugar.home.presenter.ChnegYuPresenter;
@@ -56,7 +57,7 @@ public class ChengYuActivity extends BaseActivity<ChnegYuPresenter> implements C
 
     @Override
     public void showToast(String msg) {
-
+        ToastUtils.showToastShort(mContext, msg);
     }
 
     @Override

@@ -27,7 +27,6 @@ public abstract class BaseActivity<P extends IPresenter> extends AppCompatActivi
     protected LoadingHUD loading;
     private long exitTime = 0;
 
-
     /**
      * 设置布局id
      *

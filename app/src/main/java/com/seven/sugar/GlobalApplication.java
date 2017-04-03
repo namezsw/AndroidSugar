@@ -9,7 +9,7 @@ import com.seven.library.model.http.interceptor.NetworkInterceptor;
 import com.seven.library.util.AppUtils;
 import com.seven.library.util.SDCardUtils;
 import com.seven.library.view.image.ImagePipelineConfigFactory;
-import com.seven.sugar.Retrofit.api.BaseApi;
+import com.seven.sugar.retrofit.api.BaseApi;
 import com.squareup.leakcanary.LeakCanary;
 
 import java.io.File;

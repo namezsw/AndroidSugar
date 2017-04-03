@@ -4,7 +4,7 @@ package com.seven.sugar.home.model.interactor.impl;
 import android.os.Bundle;
 
 import com.seven.library.base.model.BaseInteractorImpl;
-import com.seven.sugar.Retrofit.RetrofitManager;
+import com.seven.sugar.retrofit.RetrofitManager;
 import com.seven.sugar.home.Constants;
 import com.seven.sugar.home.model.bean.ChengYu;
 import com.seven.sugar.home.model.interactor.ChengYuInteractor;

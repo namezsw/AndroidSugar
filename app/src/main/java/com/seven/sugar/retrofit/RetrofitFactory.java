@@ -1,8 +1,8 @@
-package com.seven.sugar.Retrofit;
+package com.seven.sugar.retrofit;
 
 
 import com.seven.sugar.GlobalApplication;
-import com.seven.sugar.Retrofit.api.BaseApi;
+import com.seven.sugar.retrofit.api.BaseApi;
 
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;

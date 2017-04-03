@@ -1,6 +1,6 @@
-package com.seven.sugar.Retrofit;
+package com.seven.sugar.retrofit;
 
-import com.seven.sugar.Retrofit.api.JuHeApi;
+import com.seven.sugar.retrofit.api.JuHeApi;
 
 /**
  * Created by riven_chris on 16/7/3.

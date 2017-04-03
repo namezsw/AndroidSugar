@@ -1,4 +1,4 @@
-package com.seven.sugar.Retrofit.api;
+package com.seven.sugar.retrofit.api;
 
 import com.seven.sugar.home.model.bean.ChengYu;
 

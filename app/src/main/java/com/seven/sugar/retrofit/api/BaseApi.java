@@ -1,4 +1,4 @@
-package com.seven.sugar.Retrofit.api;
+package com.seven.sugar.retrofit.api;
 
 /**
  * Created by Seven on 2017/4/3.

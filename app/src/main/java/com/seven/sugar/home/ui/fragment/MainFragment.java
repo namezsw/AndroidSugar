@@ -1,14 +1,14 @@
-package com.seven.sugar.home.fragment;
+package com.seven.sugar.home.ui.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import com.seven.library.base.fragment.BaseFragment;
+import com.seven.library.base.ui.fragment.BaseFragment;
 import com.seven.library.base.presenter.IPresenter;
 import com.seven.sugar.R;
-import com.seven.sugar.home.activity.TestActivity;
+import com.seven.sugar.home.ui.activity.ChengYuActivity;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -42,7 +42,7 @@ public class MainFragment extends BaseFragment {
         switch (v.getId()) {
             case R.id.tv_info:
 //                Snackbar.make(tvInfo, "Don't click me.please!.", Snackbar.LENGTH_SHORT).show();
-                Intent intent = new Intent(mContext, TestActivity.class);
+                Intent intent = new Intent(mContext, ChengYuActivity.class);
                 startActivity(intent);
                 break;
         }

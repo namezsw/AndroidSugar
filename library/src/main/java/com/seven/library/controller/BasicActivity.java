@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import com.seven.library.model.http.OkHttpRequestHelper;
 import com.seven.library.model.http.callback.RequestCallback;
 import com.seven.library.util.ToastUtils;
+import com.seven.library.view.LoadingHUD;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -24,8 +25,10 @@ import okhttp3.Request;
  * Created by Seven on 2017/2/15.
  */
 public abstract class BasicActivity extends AppCompatActivity {
+
     protected Context mContext;
     protected Bundle args;
+    protected LoadingHUD loading;
     private long exitTime = 0;
 
     /**
@@ -60,7 +63,9 @@ public abstract class BasicActivity extends AppCompatActivity {
         EventBusHelper.register(this);//注册EventBus
         ActivityManager.getInstance().addActivity(this);//添加当前Activity到管理堆栈
         mContext = this;
-        this.args = getIntent().getExtras() != null ? getIntent().getExtras() : new Bundle();
+        loading = LoadingHUD.getInstance(this);
+        loading.setSpinnerType(LoadingHUD.FADED_ROUND_SPINNER);
+        args = getIntent().getExtras() != null ? getIntent().getExtras() : new Bundle();
         //布局初始化完成的回调
         onViewCreatedFinish(savedInstanceState);
     }
@@ -68,6 +73,7 @@ public abstract class BasicActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
+        loading.dismiss();
         //Activity停止时取消所有请求
         String[] urls = getRequestUrls();
         for (String url : urls) {
@@ -229,7 +235,6 @@ public abstract class BasicActivity extends AppCompatActivity {
             intent.putExtras(args);
         startService(intent);
     }
-
 
     /**
      * 双击退出App

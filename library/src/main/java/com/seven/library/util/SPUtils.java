@@ -23,7 +23,7 @@ public class SPUtils {
      * @param spName spName
      */
     public static void init(String spName) {
-        spUtils = new SPUtils("utilcode");
+        spUtils = new SPUtils(spName);
     }
 
     public static SPUtils getSpUtils() {

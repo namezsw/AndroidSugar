@@ -9,6 +9,7 @@ import com.seven.library.model.http.interceptor.NetworkInterceptor;
 import com.seven.library.util.AppUtils;
 import com.seven.library.util.SDCardUtils;
 import com.seven.library.view.image.ImagePipelineConfigFactory;
+import com.seven.sugar.Retrofit.api.BaseApi;
 import com.squareup.leakcanary.LeakCanary;
 
 import java.io.File;
@@ -24,12 +25,20 @@ public class GlobalApplication extends BasicApplication {
     @Override
     public void onCreate() {
         super.onCreate();
+        //LeakCanary初始化
         LeakCanary.install(this);
         //Fresco初始化
         Fresco.initialize(getApplicationContext(),
                 ImagePipelineConfigFactory.getOkHttpImagePipelineConfig(getApplicationContext(), BasicApplication.getOkHttpClient()));
+        //Api初始化
+        BaseApi.init(BaseApi.HOST_FORMAL);
     }
 
+    @Override
+    public boolean isDebug() {
+        //根据需求更改
+        return BaseApi.isDebug();
+    }
 
     @Override
     public OkHttpClient initOkHttpClient() {

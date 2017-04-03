@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="permissions">
+        <item>没有此权限，无法使用这个功能，请开启权限。</item>
+        <item>没有此权限，无法使用这个功能，请开启权限。</item>
+        <item>没有此权限，无法使用这个功能，请开启权限。</item>
+        <item>没有此权限，无法使用这个功能，请开启权限。</item>
+        <item>没有此权限，无法使用这个功能，请开启权限。</item>
+        <item>没有此权限，无法使用这个功能，请开启权限。</item>
+        <item>没有此权限，无法使用这个功能，请开启权限。</item>
+        <item>没有此权限，无法使用这个功能，请开启权限。</item>
+        <item>没有此权限，无法使用这个功能，请开启权限。</item>
+    </string-array>
+
+</resources>

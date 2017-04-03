@@ -1,4 +1,4 @@
-package com.seven.library.base.activity;
+package com.seven.library.base.ui.activity;
 
 import android.app.Activity;
 import android.app.Service;
@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import com.seven.library.base.presenter.IPresenter;
 import com.seven.library.controller.ActivityManager;
 import com.seven.library.util.ToastUtils;
+import com.seven.library.view.LoadingHUD;
 
 import butterknife.ButterKnife;
 
@@ -23,7 +24,9 @@ public abstract class BaseActivity<P extends IPresenter> extends AppCompatActivi
     protected P mPresenter;
     protected Context mContext;
     protected Bundle args;
+    protected LoadingHUD loading;
     private long exitTime = 0;
+
 
     /**
      * 设置布局id
@@ -46,15 +49,23 @@ public abstract class BaseActivity<P extends IPresenter> extends AppCompatActivi
         super.onCreate(savedInstanceState);
         int layoutId = getLayoutId();
         if (layoutId == 0)
-            throw new RuntimeException("找不到Layout资源,Fragment初始化失败!");
+            throw new RuntimeException("找不到Layout资源,Activity初始化失败!");
         setContentView(layoutId);
         ButterKnife.bind(this);
         ActivityManager.getInstance().addActivity(this);//添加当前Activity到管理堆栈
         mContext = this;
         mPresenter = createPresenter();
-        this.args = getIntent().getExtras() != null ? getIntent().getExtras() : new Bundle();
+        loading = LoadingHUD.getInstance(this);
+        loading.setSpinnerType(LoadingHUD.FADED_ROUND_SPINNER);
+        args = getIntent().getExtras() != null ? getIntent().getExtras() : new Bundle();
         //布局初始化完成的回调
         onViewCreatedFinish(savedInstanceState);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        loading.dismiss();
     }
 
     @Override
@@ -161,6 +172,13 @@ public abstract class BaseActivity<P extends IPresenter> extends AppCompatActivi
 
     /**
      * 双击退出App
+     */
+    protected boolean exit() {
+        return exit(2000);
+    }
+
+    /**
+     * 双击退出App
      *
      * @param exit 退出时间(毫秒数)
      */
@@ -173,12 +191,4 @@ public abstract class BaseActivity<P extends IPresenter> extends AppCompatActivi
         }
         return true;
     }
-
-    /**
-     * 双击退出App
-     */
-    protected boolean exit() {
-        return exit(2000);
-    }
-
 }

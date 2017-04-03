@@ -2,7 +2,7 @@ package com.seven.library.controller;
 
 import android.os.Bundle;
 
-import com.seven.library.base.fragment.BaseFragment;
+import com.seven.library.base.ui.fragment.BaseFragment;
 
 /**
  * Created by Seven on 2017/3/10.

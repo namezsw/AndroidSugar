@@ -1,4 +1,4 @@
-package com.seven.sugar.home.activity;
+package com.seven.sugar.home.ui.activity;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -12,13 +12,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.seven.library.base.activity.BaseActivity;
+import com.seven.library.base.ui.activity.BaseActivity;
 import com.seven.library.base.presenter.IPresenter;
 import com.seven.library.view.BottomNavigationEnView;
 import com.seven.library.view.UnScrollableViewPager;
 import com.seven.sugar.R;
-import com.seven.sugar.home.adapter.ViewPagerAdapter;
-import com.seven.sugar.home.fragment.MainFragment;
+import com.seven.sugar.home.ui.adapter.ViewPagerAdapter;
+import com.seven.sugar.home.ui.fragment.MainFragment;
 
 import butterknife.BindView;
 
@@ -181,7 +181,7 @@ public class MainActivity extends BaseActivity {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            exit();
         }
     }
 }

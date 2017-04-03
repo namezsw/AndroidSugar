@@ -18,20 +18,25 @@ public abstract class BasicApplication extends Application {
     public static BasicApplication getInstance() {
         return appContext;
     }
+
     public static String sdCardPath;//SdCard路径
     private static OkHttpClient mOkHttpClient;//OkHttpClient
     private static int maxAge;//网络缓存最大时间
+    public static boolean isDebug;
 
     @Override
     public void onCreate() {
         super.onCreate();
         appContext = this;
+        isDebug = isDebug();
         //sdCard缓存路径
         sdCardPath = getSdCardPath();
         //SharePreference初始化
-        SPUtils.init("utilcode");
+        SPUtils.init(getLogTag());
         //Log初始化
-        Logger.init(getLogTag()).setLogLevel(Logger.LogLevel.FULL).setSaveLog(false);
+        Logger.init(getLogTag()).hideThreadInfo()
+                .setLogLevel(isDebug ? Logger.LogLevel.NONE : Logger.LogLevel.FULL)
+                .setSaveLog(false);
         //OkHttp初始化
         mOkHttpClient = initOkHttpClient();
         //网络缓存最大时间
@@ -45,6 +50,8 @@ public abstract class BasicApplication extends Application {
     public static int getMaxAge() {
         return maxAge;
     }
+
+    protected abstract boolean isDebug();
 
     /**
      * 设置OkHttpClient

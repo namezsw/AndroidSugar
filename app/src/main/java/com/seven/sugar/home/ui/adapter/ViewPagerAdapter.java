@@ -1,4 +1,4 @@
-package com.seven.sugar.home.adapter;
+package com.seven.sugar.home.ui.adapter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;

@@ -2,8 +2,10 @@ package com.seven.library;
 
 import android.app.Application;
 
+import com.facebook.drawee.backends.pipeline.Fresco;
 import com.seven.library.util.Logger;
 import com.seven.library.util.SPUtils;
+import com.seven.library.view.image.ImagePipelineConfigFactory;
 
 import okhttp3.OkHttpClient;
 
@@ -41,6 +43,9 @@ public abstract class BasicApplication extends Application {
         mOkHttpClient = initOkHttpClient();
         //网络缓存最大时间
         maxAge = getNetworkCacheMaxAgeTime();
+        //Fresco初始化
+        Fresco.initialize(getApplicationContext(),
+                ImagePipelineConfigFactory.getOkHttpImagePipelineConfig(getApplicationContext(), BasicApplication.getOkHttpClient()));
     }
 
     public static OkHttpClient getOkHttpClient() {

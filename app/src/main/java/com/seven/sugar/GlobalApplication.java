@@ -1,6 +1,5 @@
 package com.seven.sugar;
 
-import com.facebook.drawee.backends.pipeline.Fresco;
 import com.seven.library.BasicApplication;
 import com.seven.library.model.http.OkHttpManager;
 import com.seven.library.model.http.interceptor.CacheStrategyInterceptor;
@@ -8,7 +7,6 @@ import com.seven.library.model.http.interceptor.HeaderInfoInterceptor;
 import com.seven.library.model.http.interceptor.NetworkInterceptor;
 import com.seven.library.util.AppUtils;
 import com.seven.library.util.SDCardUtils;
-import com.seven.library.view.image.ImagePipelineConfigFactory;
 import com.seven.sugar.retrofit.api.BaseApi;
 import com.squareup.leakcanary.LeakCanary;
 
@@ -26,10 +24,9 @@ public class GlobalApplication extends BasicApplication {
     public void onCreate() {
         super.onCreate();
         //LeakCanary初始化
-        LeakCanary.install(this);
-        //Fresco初始化
-        Fresco.initialize(getApplicationContext(),
-                ImagePipelineConfigFactory.getOkHttpImagePipelineConfig(getApplicationContext(), BasicApplication.getOkHttpClient()));
+        if(isDebug()){
+            LeakCanary.install(this);
+        }
         //Api初始化
         BaseApi.init(BaseApi.HOST_FORMAL);
     }
@@ -41,15 +38,6 @@ public class GlobalApplication extends BasicApplication {
     }
 
     @Override
-    public OkHttpClient initOkHttpClient() {
-        return OkHttpManager.getInstance(getNetworkCacheDirectoryPath(), getNetworkCacheSize())
-                .addInterceptor(new NetworkInterceptor())
-                .addInterceptor(new CacheStrategyInterceptor())
-                .addInterceptor(new HeaderInfoInterceptor(AppUtils.getAppVersionName(this)))
-                .build();
-    }
-
-    @Override
     protected String getLogTag() {
         return "android_sugar";
     }
@@ -57,6 +45,15 @@ public class GlobalApplication extends BasicApplication {
     @Override
     protected String getSdCardPath() {
         return SDCardUtils.getSDCardPath() + File.separator + getLogTag();
+    }
+
+    @Override
+    public OkHttpClient initOkHttpClient() {
+        return OkHttpManager.getInstance(getNetworkCacheDirectoryPath(), getNetworkCacheSize())
+                .addInterceptor(new NetworkInterceptor())
+                .addInterceptor(new CacheStrategyInterceptor())
+                .addInterceptor(new HeaderInfoInterceptor(AppUtils.getAppVersionName(this)))
+                .build();
     }
 
     @Override

@@ -1,8 +1,6 @@
 package com.seven.sugar.home.ui.activity;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
@@ -12,8 +10,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.seven.library.base.ui.activity.BaseActivity;
 import com.seven.library.base.presenter.IPresenter;
+import com.seven.library.base.ui.activity.BaseActivity;
 import com.seven.library.view.BottomNavigationEnView;
 import com.seven.library.view.UnScrollableViewPager;
 import com.seven.sugar.R;
@@ -121,26 +119,23 @@ public class MainActivity extends BaseActivity {
 
     private void setupNavigationView() {
         navView.setNavigationItemSelectedListener(
-                new NavigationView.OnNavigationItemSelectedListener() {
-                    @Override
-                    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                        switch (item.getItemId()) {
-                            case R.id.nav_camera:
-                                break;
-                            case R.id.nav_gallery:
-                                break;
-                            case R.id.nav_slideshow:
-                                break;
-                            case R.id.nav_manage:
-                                break;
-                            case R.id.nav_share:
-                                break;
-                            case R.id.nav_send:
-                                break;
-                        }
-                        drawerLayout.closeDrawer(GravityCompat.START);
-                        return true;
+                item -> {
+                    switch (item.getItemId()) {
+                        case R.id.nav_camera:
+                            break;
+                        case R.id.nav_gallery:
+                            break;
+                        case R.id.nav_slideshow:
+                            break;
+                        case R.id.nav_manage:
+                            break;
+                        case R.id.nav_share:
+                            break;
+                        case R.id.nav_send:
+                            break;
                     }
+                    drawerLayout.closeDrawer(GravityCompat.START);
+                    return true;
                 });
     }
 
@@ -148,25 +143,22 @@ public class MainActivity extends BaseActivity {
         bottomNavigation.enableShiftingMode(false);
         bottomNavigation.enableItemShiftingMode(false);
         bottomNavigation.setOnNavigationItemSelectedListener(
-                new BottomNavigationView.OnNavigationItemSelectedListener() {
-                    @Override
-                    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                        switch (item.getItemId()) {
-                            case R.id.item_news:
-                                viewPager.setCurrentItem(0);
-                                break;
-                            case R.id.item_lib:
-                                viewPager.setCurrentItem(1);
-                                break;
-                            case R.id.item_find:
-                                viewPager.setCurrentItem(2);
-                                break;
-                            case R.id.item_more:
-                                viewPager.setCurrentItem(3);
-                                break;
-                        }
-                        return false;
+                item -> {
+                    switch (item.getItemId()) {
+                        case R.id.item_news:
+                            viewPager.setCurrentItem(0);
+                            break;
+                        case R.id.item_lib:
+                            viewPager.setCurrentItem(1);
+                            break;
+                        case R.id.item_find:
+                            viewPager.setCurrentItem(2);
+                            break;
+                        case R.id.item_more:
+                            viewPager.setCurrentItem(3);
+                            break;
                     }
+                    return false;
                 });
     }
 

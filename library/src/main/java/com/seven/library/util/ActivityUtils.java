@@ -8,7 +8,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.ArrayMap;
 
-import com.seven.library.BasicApplication;
+import com.seven.library.BaseApplication;
 
 import java.lang.reflect.Field;
 import java.util.HashMap;
@@ -35,9 +35,9 @@ public class ActivityUtils {
     public static boolean isActivityExists(String packageName, String className) {
         Intent intent = new Intent();
         intent.setClassName(packageName, className);
-        return !(BasicApplication.getInstance().getPackageManager().resolveActivity(intent, 0) == null ||
-                intent.resolveActivity(BasicApplication.getInstance().getPackageManager()) == null ||
-                BasicApplication.getInstance().getPackageManager().queryIntentActivities(intent, 0).size() == 0);
+        return !(BaseApplication.getInstance().getPackageManager().resolveActivity(intent, 0) == null ||
+                intent.resolveActivity(BaseApplication.getInstance().getPackageManager()) == null ||
+                BaseApplication.getInstance().getPackageManager().queryIntentActivities(intent, 0).size() == 0);
     }
 
     /**
@@ -58,7 +58,7 @@ public class ActivityUtils {
      * @param bundle      bundle
      */
     public static void launchActivity(String packageName, String className, Bundle bundle) {
-        BasicApplication.getInstance().startActivity(IntentUtils.getComponentIntent(packageName, className, bundle));
+        BaseApplication.getInstance().startActivity(IntentUtils.getComponentIntent(packageName, className, bundle));
     }
 
     /**
@@ -71,7 +71,7 @@ public class ActivityUtils {
         Intent intent = new Intent(Intent.ACTION_MAIN, null);
         intent.addCategory(Intent.CATEGORY_LAUNCHER);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        PackageManager pm = BasicApplication.getInstance().getPackageManager();
+        PackageManager pm = BaseApplication.getInstance().getPackageManager();
         List<ResolveInfo> infos = pm.queryIntentActivities(intent, 0);
         for (ResolveInfo info : infos) {
             if (info.activityInfo.packageName.equals(packageName)) {

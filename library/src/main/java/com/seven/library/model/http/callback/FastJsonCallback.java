@@ -2,7 +2,7 @@ package com.seven.library.model.http.callback;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.seven.library.BasicApplication;
+import com.seven.library.BaseApplication;
 import com.seven.library.util.JsonUtils;
 import com.seven.library.util.Logger;
 import com.seven.library.util.StringUtils;
@@ -95,7 +95,7 @@ abstract class FastJsonCallback<T extends Serializable> extends JSONObjectCallba
     public void onFailure(String url, int statusCode, String msg) {
         Logger.e("请求错误:url=" + url + ",statusCode=" + statusCode + ",错误信息=" + msg);
         if (!StringUtils.isEmpty(msg) && statusCode != -200)
-            ToastUtils.showToastLong(BasicApplication.getInstance(), msg);
+            ToastUtils.showToastLong(BaseApplication.getInstance(), msg);
     }
 
     @Override

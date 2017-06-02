@@ -10,7 +10,7 @@ import android.content.pm.PackageManager;
 import android.content.pm.Signature;
 import android.graphics.drawable.Drawable;
 
-import com.seven.library.BasicApplication;
+import com.seven.library.BaseApplication;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -92,7 +92,7 @@ public class AppUtils {
         File file = FileUtils.getFileByPath(filePath);
         if (!FileUtils.isFileExists(file)) return false;
         String command = "LD_LIBRARY_PATH=/vendor/lib:/system/lib pm install " + filePath;
-        ShellUtils.CommandResult commandResult = ShellUtils.execCmd(command, !isSystemApp(BasicApplication.getInstance()), true);
+        ShellUtils.CommandResult commandResult = ShellUtils.execCmd(command, !isSystemApp(BaseApplication.getInstance()), true);
         return commandResult.successMsg != null && commandResult.successMsg.toLowerCase().contains("success");
     }
 
@@ -159,7 +159,7 @@ public class AppUtils {
      */
     public static void launchApp(String packageName) {
         if (StringUtils.isSpace(packageName)) return;
-        BasicApplication.getInstance().startActivity(IntentUtils.getLaunchAppIntent(packageName));
+        BaseApplication.getInstance().startActivity(IntentUtils.getLaunchAppIntent(packageName));
     }
 
     /**
@@ -479,6 +479,22 @@ public class AppUtils {
             }
         }
         return false;
+    }
+
+    /**
+     * 获得缓存路径
+     *
+     * @param context 上下文
+     * @return {@code true}: 是<br>{@code false}: 否
+     */
+    public static String getAppCachePath(Context context) {
+        String cachePath;
+        if (SDCardUtils.isSDCardEnable() && context.getExternalCacheDir() != null) {
+            cachePath = context.getExternalCacheDir().getPath();
+        } else {
+            cachePath = context.getCacheDir().getPath();
+        }
+        return cachePath;
     }
 
     /**

@@ -9,7 +9,7 @@ import android.provider.MediaStore;
 import android.support.v4.content.FileProvider;
 import android.webkit.MimeTypeMap;
 
-import com.seven.library.BasicApplication;
+import com.seven.library.BaseApplication;
 
 import java.io.File;
 
@@ -52,7 +52,7 @@ public class IntentUtils {
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-            Uri contentUri = FileProvider.getUriForFile(BasicApplication.getInstance(), "com.your.package.fileProvider", file);
+            Uri contentUri = FileProvider.getUriForFile(BaseApplication.getInstance(), "com.your.package.fileProvider", file);
             intent.setDataAndType(contentUri, type);
         }
         intent.setDataAndType(Uri.fromFile(file), type);
@@ -78,7 +78,7 @@ public class IntentUtils {
      * @return intent
      */
     public static Intent getLaunchAppIntent(String packageName) {
-        return BasicApplication.getInstance().getPackageManager().getLaunchIntentForPackage(packageName);
+        return BaseApplication.getInstance().getPackageManager().getLaunchIntentForPackage(packageName);
     }
 
     /**

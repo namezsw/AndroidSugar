@@ -5,6 +5,8 @@ import android.content.Context;
 
 import java.util.Stack;
 
+import javax.inject.Inject;
+
 /**
  * Activity管理工具类,将activity放入栈统一管理
  * Created by Seven on 2017/2/15.
@@ -14,7 +16,9 @@ public class ActivityManager {
     private volatile Stack<Activity> activityStack;
     //全局单例
     private static volatile ActivityManager instance;
+    private Activity currentActivity;
 
+    @Inject
     public ActivityManager() {
         activityStack = new Stack<>();
     }
@@ -39,6 +43,11 @@ public class ActivityManager {
         activityStack.add(activity);
     }
 
+    /**
+     * 移除activity
+     *
+     * @param activity activity
+     */
     public void removeActivity(Activity activity) {
         activityStack.remove(activity);
     }
@@ -48,25 +57,26 @@ public class ActivityManager {
      *
      * @return 栈顶的activity
      */
-    public Activity getCurrentActivity() {
+    public Activity getTopActivity() {
         return activityStack.lastElement();
     }
 
     /**
-     * 将指定的activity移出管理堆栈
+     * 将在前台的activity保存
+     *
+     * @param currentActivity
      */
-    public void removeCurrentActivity() {
-        Activity activity = getCurrentActivity();
-        if (activity != null)
-            activityStack.remove(activity);
+    public void setCurrentActivity(Activity currentActivity) {
+        this.currentActivity = currentActivity;
     }
 
-
     /**
-     * 结束当前的activity
+     * 获得当前在前台的activity
+     *
+     * @return 前台的activity
      */
-    public void finishCurrentActivity() {
-        getCurrentActivity().finish();
+    public Activity getCurrentActivity() {
+        return currentActivity;
     }
 
     /**

@@ -3,9 +3,9 @@ package com.seven.library.controller;
 import org.greenrobot.eventbus.EventBus;
 
 /**
- * 事件总线帮助
  * Created by Seven on 2017/2/15.
  */
+
 public final class EventBusHelper {
     private static EventBus eventBus = EventBus.getDefault();
 

@@ -3,7 +3,7 @@ package com.seven.library.util;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.seven.library.BasicApplication;
+import com.seven.library.BaseApplication;
 
 import java.util.Map;
 
@@ -37,7 +37,7 @@ public class SPUtils {
      * @param spName spName
      */
     public SPUtils(String spName) {
-        sp = BasicApplication.getInstance().getSharedPreferences(spName, Context.MODE_PRIVATE);
+        sp = BaseApplication.getInstance().getSharedPreferences(spName, Context.MODE_PRIVATE);
         editor = sp.edit();
         editor.apply();
     }

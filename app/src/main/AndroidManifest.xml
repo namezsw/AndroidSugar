@@ -9,15 +9,15 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.seven.sugar.SplashActivity">
+        <activity android:name="com.seven.sugar.splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.seven.sugar.home.ui.activity.MainActivity" />
-        <activity android:name="com.seven.sugar.home.ui.activity.ChengYuActivity" />
+        <activity android:name="com.seven.sugar.main.ui.activity.MainActivity" />
+        <activity android:name="com.seven.sugar.main.ui.activity.ChengYuActivity" />
     </application>
 
 </manifest>

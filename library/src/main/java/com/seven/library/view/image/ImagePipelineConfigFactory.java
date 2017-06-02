@@ -9,7 +9,7 @@ import com.facebook.imagepipeline.backends.okhttp3.OkHttpImagePipelineConfigFact
 import com.facebook.imagepipeline.cache.MemoryCacheParams;
 import com.facebook.imagepipeline.core.ImagePipelineConfig;
 import com.facebook.imagepipeline.decoder.SimpleProgressiveJpegConfig;
-import com.seven.library.BasicApplication;
+import com.seven.library.BaseApplication;
 
 import java.io.File;
 
@@ -72,19 +72,19 @@ public class ImagePipelineConfigFactory {
         };
         //小图片的磁盘配置
         DiskCacheConfig diskSmallCacheConfig = DiskCacheConfig.newBuilder(context)
-                .setBaseDirectoryPath(new File(BasicApplication.sdCardPath).getAbsoluteFile())//缓存图片基路径
+                .setBaseDirectoryPath(new File(BaseApplication.sdCardPath).getAbsoluteFile())//缓存图片基路径
                 .setBaseDirectoryName(ConfigConstants.IMAGE_PIPELINE_SMALL_CACHE_DIR)//文件夹名
 //            .setCacheErrorLogger(cacheErrorLogger)//日志记录器用于日志错误的缓存。
 //            .setCacheEventListener(cacheEventListener)//缓存事件侦听器。
 //            .setDiskTrimmableRegistry(diskTrimmableRegistry)//类将包含一个注册表的缓存减少磁盘空间的环境。
-                .setMaxCacheSize(ConfigConstants.MAX_DISK_CACHE_SIZE)//默认缓存的最大大小。
+                .setMaxCacheSize(ConfigConstants.MAX_SMALL_DISK_CACHE_SIZE)//默认缓存的最大大小。
                 .setMaxCacheSizeOnLowDiskSpace(ConfigConstants.MAX_SMALL_DISK_CACHE_LOW_SIZE)//缓存的最大大小,使用设备时低磁盘空间。
                 .setMaxCacheSizeOnVeryLowDiskSpace(ConfigConstants.MAX_SMALL_DISK_CACHE_VERY_LOW_SIZE)//缓存的最大大小,当设备极低磁盘空间
 //            .setVersion(version)
                 .build();
         //默认图片的磁盘配置
         DiskCacheConfig diskCacheConfig = DiskCacheConfig.newBuilder(context)
-                .setBaseDirectoryPath(new File(BasicApplication.sdCardPath).getAbsoluteFile())//缓存图片基路径
+                .setBaseDirectoryPath(new File(BaseApplication.sdCardPath).getAbsoluteFile())//缓存图片基路径
                 .setBaseDirectoryName(ConfigConstants.IMAGE_PIPELINE_CACHE_DIR)//文件夹名
 //            .setCacheErrorLogger(cacheErrorLogger)//日志记录器用于日志错误的缓存。
 //            .setCacheEventListener(cacheEventListener)//缓存事件侦听器。
@@ -100,7 +100,6 @@ public class ImagePipelineConfigFactory {
             configBuilder = OkHttpImagePipelineConfigFactory.newBuilder(context, okHttpClient);
         else
             configBuilder = ImagePipelineConfig.newBuilder(context);
-//            .setAnimatedImageFactory(AnimatedImageFactory animatedImageFactory)//图片加载动画
         configBuilder.setBitmapMemoryCacheParamsSupplier(mSupplierMemoryCacheParams)//内存缓存配置(一级缓存，已解码的图片)
 //            .setCacheKeyFactory(cacheKeyFactory)//缓存Key工厂
 //            .setEncodedMemoryCacheParamsSupplier(encodedCacheParamsSupplier)//内存缓存和未解码的内存缓存的配置(二级缓存)
@@ -115,6 +114,7 @@ public class ImagePipelineConfigFactory {
                 .setProgressiveJpegConfig(new SimpleProgressiveJpegConfig())//渐进式JPEG图
 //            .setRequestListeners(requestListeners)//图片请求监听
 //            .setResizeAndRotateEnabledForNetwork(boolean resizeAndRotateEnabledForNetwork)//调整和旋转是否支持网络图片
+//            .setAnimatedImageFactory(AnimatedImageFactory animatedImageFactory)//图片加载动画
                 .setSmallImageDiskCacheConfig(diskSmallCacheConfig);//磁盘缓存配置(小图片，可选～三级缓存的小图优化缓存)
         return configBuilder.build();
     }

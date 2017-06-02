@@ -1,6 +1,6 @@
 package com.seven.library.util;
 
-import com.seven.library.BasicApplication;
+import com.seven.library.BaseApplication;
 
 import java.io.File;
 
@@ -21,7 +21,7 @@ public class CleanUtils {
      * @return {@code true}: 清除成功<br>{@code false}: 清除失败
      */
     public static boolean cleanInternalCache() {
-        return FileUtils.deleteFilesInDir(BasicApplication.getInstance().getCacheDir());
+        return FileUtils.deleteFilesInDir(BaseApplication.getInstance().getCacheDir());
     }
 
     /**
@@ -31,7 +31,7 @@ public class CleanUtils {
      * @return {@code true}: 清除成功<br>{@code false}: 清除失败
      */
     public static boolean cleanInternalFiles() {
-        return FileUtils.deleteFilesInDir(BasicApplication.getInstance().getFilesDir());
+        return FileUtils.deleteFilesInDir(BaseApplication.getInstance().getFilesDir());
     }
 
     /**
@@ -41,7 +41,7 @@ public class CleanUtils {
      * @return {@code true}: 清除成功<br>{@code false}: 清除失败
      */
     public static boolean cleanInternalDbs() {
-        return FileUtils.deleteFilesInDir(BasicApplication.getInstance().getFilesDir().getParent() + File.separator + "databases");
+        return FileUtils.deleteFilesInDir(BaseApplication.getInstance().getFilesDir().getParent() + File.separator + "databases");
     }
 
     /**
@@ -52,7 +52,7 @@ public class CleanUtils {
      * @return {@code true}: 清除成功<br>{@code false}: 清除失败
      */
     public static boolean cleanInternalDbByName(String dbName) {
-        return BasicApplication.getInstance().deleteDatabase(dbName);
+        return BaseApplication.getInstance().deleteDatabase(dbName);
     }
 
     /**
@@ -62,7 +62,7 @@ public class CleanUtils {
      * @return {@code true}: 清除成功<br>{@code false}: 清除失败
      */
     public static boolean cleanInternalSP() {
-        return FileUtils.deleteFilesInDir(BasicApplication.getInstance().getFilesDir().getParent() + File.separator + "shared_prefs");
+        return FileUtils.deleteFilesInDir(BaseApplication.getInstance().getFilesDir().getParent() + File.separator + "shared_prefs");
     }
 
     /**
@@ -72,7 +72,7 @@ public class CleanUtils {
      * @return {@code true}: 清除成功<br>{@code false}: 清除失败
      */
     public static boolean cleanExternalCache() {
-        return SDCardUtils.isSDCardEnable() && FileUtils.deleteFilesInDir(BasicApplication.getInstance().getExternalCacheDir());
+        return SDCardUtils.isSDCardEnable() && FileUtils.deleteFilesInDir(BaseApplication.getInstance().getExternalCacheDir());
     }
 
     /**

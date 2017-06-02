@@ -3,8 +3,6 @@ package com.seven.library.util;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.seven.library.BasicApplication;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -94,7 +92,7 @@ public final class Logger {
      *
      * @param tag is the given string which will be used in Logger
      */
-    public static Settings init(String tag) {
+    public static Settings init(String tag, String sdCardPath) {
         if (tag == null) {
             throw new NullPointerException("tag may not be null");
         }
@@ -102,7 +100,7 @@ public final class Logger {
             throw new IllegalStateException("tag may not be empty");
         }
 
-        logFileName = BasicApplication.sdCardPath + File.separator + "log";
+        logFileName = sdCardPath + File.separator + "log";
         openLogFile();
         Logger.TAG = tag;
         return settings;

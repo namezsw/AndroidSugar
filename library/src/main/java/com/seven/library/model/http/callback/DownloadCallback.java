@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 
-import com.seven.library.BasicApplication;
+import com.seven.library.BaseApplication;
 import com.seven.library.R;
 import com.seven.library.util.FileUtils;
 import com.seven.library.util.Logger;
@@ -75,7 +75,7 @@ public abstract class DownloadCallback implements Callback {
             Bundle bundle = new Bundle();
             bundle.putString(KEY_URL, "");
             bundle.putInt(KEY_STATUS_CODE, 404);
-            bundle.putString(KEY_FAILURE_MSG, BasicApplication.getInstance().getResources().getString(R.string.not_network));
+            bundle.putString(KEY_FAILURE_MSG, BaseApplication.getInstance().getResources().getString(R.string.not_network));
             mHandler.sendMessage(Message.obtain(mHandler, RESULT_FAILURE, bundle));
         }
         String url = response.request().url().toString();

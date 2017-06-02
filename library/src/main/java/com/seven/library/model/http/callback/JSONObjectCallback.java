@@ -7,7 +7,7 @@ import android.text.TextUtils;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.seven.library.BasicApplication;
+import com.seven.library.BaseApplication;
 import com.seven.library.R;
 import com.seven.library.util.Logger;
 import com.seven.library.util.ResourcesUtils;
@@ -123,8 +123,8 @@ public abstract class JSONObjectCallback extends RequestCallback {
             bundle.putString(KEY_URL, "");
             bundle.putInt(KEY_STATUS_CODE, 404);
             bundle.putString(KEY_FAILURE_MSG,
-                    isNetwork ? ResourcesUtils.getString(BasicApplication.getInstance(), R.string.not_network)
-                            : ResourcesUtils.getString(BasicApplication.getInstance(), R.string.fail_request));
+                    isNetwork ? ResourcesUtils.getString(BaseApplication.getInstance(), R.string.not_network)
+                            : ResourcesUtils.getString(BaseApplication.getInstance(), R.string.fail_request));
             mHandler.sendMessage(Message.obtain(mHandler, RESULT_FAILURE, bundle));
             return;
         }

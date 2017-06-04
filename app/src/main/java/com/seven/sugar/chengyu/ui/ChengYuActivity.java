@@ -1,4 +1,4 @@
-package com.seven.sugar.main.ui.activity;
+package com.seven.sugar.chengyu.ui;
 
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -8,11 +8,11 @@ import android.widget.TextView;
 import com.seven.library.base.ui.activity.BaseMVPActivity;
 import com.seven.sugar.GlobalApplication;
 import com.seven.sugar.R;
-import com.seven.sugar.main.contract.ChengYuContract;
-import com.seven.sugar.main.di.component.DaggerChengYuComponent;
-import com.seven.sugar.main.di.module.ChengYuModule;
-import com.seven.sugar.main.model.bean.ChengYuBean;
-import com.seven.sugar.main.presenter.ChengYuPresenter;
+import com.seven.sugar.chengyu.contract.ChengYuContract;
+import com.seven.sugar.chengyu.di.component.DaggerChengYuComponent;
+import com.seven.sugar.chengyu.di.module.ChengYuModule;
+import com.seven.sugar.chengyu.model.bean.ChengYuBean;
+import com.seven.sugar.chengyu.presenter.ChengYuPresenter;
 
 import butterknife.BindView;
 import butterknife.OnClick;

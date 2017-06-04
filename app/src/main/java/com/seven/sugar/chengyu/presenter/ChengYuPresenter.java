@@ -1,10 +1,10 @@
-package com.seven.sugar.main.presenter;
+package com.seven.sugar.chengyu.presenter;
 
 import com.seven.library.base.presenter.BasePresenter;
 import com.seven.sugar.base.retrofit.model.Model;
 import com.seven.sugar.base.retrofit.subscriber.ApiSubscriber1;
-import com.seven.sugar.main.contract.ChengYuContract;
-import com.seven.sugar.main.model.bean.ChengYuBean;
+import com.seven.sugar.chengyu.contract.ChengYuContract;
+import com.seven.sugar.chengyu.model.bean.ChengYuBean;
 
 import javax.inject.Inject;
 

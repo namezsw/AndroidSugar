@@ -1,9 +1,9 @@
-package com.seven.sugar.main.di.module;
+package com.seven.sugar.chengyu.di.module;
 
 
 import com.seven.library.base.di.scope.ActivityScope;
-import com.seven.sugar.main.contract.ChengYuContract;
-import com.seven.sugar.main.model.interactor.ChengYuInteractor;
+import com.seven.sugar.chengyu.contract.ChengYuContract;
+import com.seven.sugar.chengyu.model.interactor.ChengYuInteractor;
 
 import dagger.Module;
 import dagger.Provides;

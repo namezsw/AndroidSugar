@@ -1,10 +1,10 @@
-package com.seven.sugar.main.di.component;
+package com.seven.sugar.chengyu.di.component;
 
 
 import com.seven.library.base.di.scope.ActivityScope;
 import com.seven.sugar.base.di.component.AppComponent;
-import com.seven.sugar.main.di.module.ChengYuModule;
-import com.seven.sugar.main.ui.activity.ChengYuActivity;
+import com.seven.sugar.chengyu.di.module.ChengYuModule;
+import com.seven.sugar.chengyu.ui.ChengYuActivity;
 import com.seven.sugar.main.ui.fragment.ChengYuFragment;
 
 import dagger.Component;

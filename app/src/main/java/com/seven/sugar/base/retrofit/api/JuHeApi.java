@@ -2,7 +2,7 @@ package com.seven.sugar.base.retrofit.api;
 
 import com.seven.sugar.base.BaseApi;
 import com.seven.sugar.base.retrofit.model.Model;
-import com.seven.sugar.main.model.bean.ChengYuBean;
+import com.seven.sugar.chengyu.model.bean.ChengYuBean;
 
 import java.util.Map;
 

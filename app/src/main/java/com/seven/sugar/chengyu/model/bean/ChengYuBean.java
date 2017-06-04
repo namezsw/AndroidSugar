@@ -1,4 +1,4 @@
-package com.seven.sugar.main.model.bean;
+package com.seven.sugar.chengyu.model.bean;
 
 import java.util.List;
 

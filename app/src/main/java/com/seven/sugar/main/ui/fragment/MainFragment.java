@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import com.seven.library.base.ui.fragment.BaseLazyFragment;
 import com.seven.sugar.R;
-import com.seven.sugar.main.ui.activity.ChengYuActivity;
+import com.seven.sugar.chengyu.ui.ChengYuActivity;
 
 import butterknife.BindView;
 import butterknife.OnClick;

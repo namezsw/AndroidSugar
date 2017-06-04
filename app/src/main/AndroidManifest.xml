@@ -17,7 +17,7 @@
             </intent-filter>
         </activity>
         <activity android:name="com.seven.sugar.main.ui.activity.MainActivity" />
-        <activity android:name="com.seven.sugar.main.ui.activity.ChengYuActivity" />
+        <activity android:name="com.seven.sugar.chengyu.ui.ChengYuActivity" />
     </application>
 
 </manifest>

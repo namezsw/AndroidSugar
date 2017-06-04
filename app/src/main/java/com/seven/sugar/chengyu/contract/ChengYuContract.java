@@ -1,10 +1,10 @@
-package com.seven.sugar.main.contract;
+package com.seven.sugar.chengyu.contract;
 
 
 import com.seven.library.base.model.IInteractor;
 import com.seven.library.base.ui.IView;
 import com.seven.sugar.base.retrofit.model.Model;
-import com.seven.sugar.main.model.bean.ChengYuBean;
+import com.seven.sugar.chengyu.model.bean.ChengYuBean;
 
 import rx.Observable;
 

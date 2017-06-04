@@ -1,11 +1,11 @@
-package com.seven.sugar.main.ui.activity;
+package com.seven.sugar.main.ui.fragment;
 
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
+import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.TextView;
 
-import com.seven.library.base.ui.activity.BaseMVPActivity;
+import com.seven.library.base.ui.fragment.BaseMVPLazyFragment;
 import com.seven.sugar.GlobalApplication;
 import com.seven.sugar.R;
 import com.seven.sugar.main.contract.ChengYuContract;
@@ -18,14 +18,13 @@ import butterknife.BindView;
 import butterknife.OnClick;
 
 /**
+ * ChengYuFragment
  * Created by Seven on 2017/4/3.
  */
-public class ChengYuActivity extends BaseMVPActivity<ChengYuPresenter> implements ChengYuContract.View {
+public class ChengYuFragment extends BaseMVPLazyFragment<ChengYuPresenter> implements ChengYuContract.View {
 
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
-    @BindView(R.id.test_text_view)
-    TextView testTextView;
+    @BindView(R.id.tv_info)
+    TextView tvInfo;
 
     @Override
     protected void injectComponent() {
@@ -38,19 +37,19 @@ public class ChengYuActivity extends BaseMVPActivity<ChengYuPresenter> implement
 
     @Override
     protected int getLayoutId() {
-        return R.layout.activity_test;
+        return R.layout.fragment_chengyu;
     }
 
     @Override
-    protected void onViewCreateFinish(Bundle savedInstanceState) {
-        super.onViewCreateFinish(savedInstanceState);
-        setSupportActionBar(toolbar);
+    public void onViewCreateFinish(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreateFinish(view, savedInstanceState);
+        tvInfo.setText(getArguments().getString("info"));
     }
 
-    @OnClick({R.id.test_text_view})
+    @OnClick(R.id.tv_info)
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.test_text_view:
+            case R.id.tv_info:
                 mPresenter.queryChengYu("积少成多");
                 break;
         }
@@ -58,7 +57,6 @@ public class ChengYuActivity extends BaseMVPActivity<ChengYuPresenter> implement
 
     @Override
     public void showChengYu(ChengYuBean bean) {
-        testTextView.setText(bean.getChengyujs());
+        tvInfo.setText(bean.getChengyujs());
     }
-
 }

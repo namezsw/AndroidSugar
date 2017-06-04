@@ -3,8 +3,8 @@ package com.seven.library.base.di.module;
 import android.app.Application;
 
 import com.seven.library.BaseApplication;
-import com.seven.library.model.http.interceptor.CacheStrategyInterceptor;
-import com.seven.library.model.http.interceptor.HeaderInfoInterceptor;
+import com.seven.library.model.okhttp.interceptor.CacheStrategyInterceptor;
+import com.seven.library.model.okhttp.interceptor.HeaderInfoInterceptor;
 import com.seven.library.util.AppUtils;
 import com.seven.library.util.Logger;
 

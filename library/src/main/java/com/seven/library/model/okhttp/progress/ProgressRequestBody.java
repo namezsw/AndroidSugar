@@ -1,4 +1,4 @@
-package com.seven.library.model.http.progress;
+package com.seven.library.model.okhttp.progress;
 
 import java.io.IOException;
 

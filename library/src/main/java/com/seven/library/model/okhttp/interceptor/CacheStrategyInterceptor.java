@@ -1,4 +1,4 @@
-package com.seven.library.model.http.interceptor;
+package com.seven.library.model.okhttp.interceptor;
 
 
 import com.seven.library.util.NetworkUtils;

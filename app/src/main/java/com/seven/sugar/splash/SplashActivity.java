@@ -26,7 +26,7 @@ public class SplashActivity extends BaseActivity {
     }
 
     @Override
-    protected void onViewCreatedFinish(Bundle saveInstanceState) {
+    protected void onViewCreateFinish(Bundle savedInstanceState) {
 
     }
 

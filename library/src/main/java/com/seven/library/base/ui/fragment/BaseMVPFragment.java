@@ -29,7 +29,7 @@ public abstract class BaseMVPFragment<P extends BasePresenter> extends BaseFragm
 
     @Override
     public void showMessage(String msg) {
-        ToastUtils.showToastShort(getContext(), !StringUtils.isEmpty(msg) ? msg : getString(R.string.not_network));
+        ToastUtils.showToastShort(getActivity(), !StringUtils.isEmpty(msg) ? msg : getString(R.string.not_network));
     }
 
     @Override

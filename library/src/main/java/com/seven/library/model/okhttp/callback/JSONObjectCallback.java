@@ -1,4 +1,4 @@
-package com.seven.library.model.http.callback;
+package com.seven.library.model.okhttp.callback;
 
 import android.os.Bundle;
 import android.os.Handler;

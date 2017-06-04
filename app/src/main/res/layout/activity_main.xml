@@ -20,6 +20,7 @@
         android:layout_height="match_parent">
 
         <include
+            android:id="@+id/bar_app"
             layout="@layout/layout_app_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
@@ -29,6 +30,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_above="@+id/bottom_navigation"
+            android:layout_below="@+id/bar_app"
             android:overScrollMode="never"
             app:enable_select_scroll="false"
             app:enable_touch_scroll="false" />

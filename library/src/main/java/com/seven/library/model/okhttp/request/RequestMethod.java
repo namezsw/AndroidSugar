@@ -1,4 +1,4 @@
-package com.seven.library.model.http.request;
+package com.seven.library.model.okhttp.request;
 
 /**
  * 请求类型

@@ -21,7 +21,7 @@ public abstract class BaseMVPActivity<P extends BasePresenter> extends BaseActiv
     protected P mPresenter;
 
     @Override
-    protected void onViewCreatedFinish(@Nullable Bundle savedInstanceState) {
+    protected void onViewCreateFinish(@Nullable Bundle savedInstanceState) {
         injectComponent();
     }
 

@@ -3,7 +3,8 @@ package com.seven.sugar.main.contract;
 
 import com.seven.library.base.model.IInteractor;
 import com.seven.library.base.ui.IView;
-import com.seven.sugar.main.model.bean.ChengYu;
+import com.seven.sugar.base.retrofit.model.Model;
+import com.seven.sugar.main.model.bean.ChengYuBean;
 
 import rx.Observable;
 
@@ -13,10 +14,10 @@ import rx.Observable;
 
 public interface ChengYuContract {
     interface View extends IView {
-        void showChengYu(ChengYu.ResultBean bean);
+        void showChengYu(ChengYuBean bean);
     }
 
     interface Interactor extends IInteractor {
-        Observable<ChengYu> queryChengYu(String word);
+        Observable<Model<ChengYuBean>> queryChengYu(String word);
     }
 }

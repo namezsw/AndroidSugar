@@ -3,9 +3,10 @@ package com.seven.sugar.main.model.interactor;
 
 import com.seven.library.base.di.scope.ActivityScope;
 import com.seven.sugar.base.retrofit.api.JuHeApi;
+import com.seven.sugar.base.retrofit.model.Model;
 import com.seven.sugar.main.Constants;
 import com.seven.sugar.main.contract.ChengYuContract;
-import com.seven.sugar.main.model.bean.ChengYu;
+import com.seven.sugar.main.model.bean.ChengYuBean;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -30,7 +31,7 @@ public class ChengYuInteractor implements ChengYuContract.Interactor {
     }
 
     @Override
-    public Observable<ChengYu> queryChengYu(String word) {
+    public Observable<Model<ChengYuBean>> queryChengYu(String word) {
         Map<String, String> params = new HashMap<>();
         params.put(Constants.Parameter.PARAM_KEY, Constants.JUHE_APP_KEY);
         params.put(Constants.Parameter.PARAM_WORD, word);

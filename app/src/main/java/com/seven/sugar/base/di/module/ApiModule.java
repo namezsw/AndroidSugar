@@ -6,7 +6,7 @@ import com.google.gson.GsonBuilder;
 import com.seven.library.base.di.scope.AppScope;
 import com.seven.sugar.base.BaseApi;
 import com.seven.sugar.base.retrofit.api.JuHeApi;
-import com.seven.sugar.base.retrofit.RetrofitFactory;
+import com.seven.library.model.retrofit.RetrofitFactory;
 
 import dagger.Module;
 import dagger.Provides;

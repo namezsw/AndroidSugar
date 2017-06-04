@@ -37,8 +37,7 @@ public abstract class BaseV4Fragment extends Fragment implements LifecycleProvid
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        View view = LayoutInflater.from(getActivity()).inflate(getLayoutId(), null);
-        return view;
+        return LayoutInflater.from(getActivity()).inflate(getLayoutId(), null);
     }
 
     @Override

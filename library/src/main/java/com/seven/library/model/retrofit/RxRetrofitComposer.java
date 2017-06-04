@@ -1,4 +1,4 @@
-package com.seven.sugar.base.retrofit;
+package com.seven.library.model.retrofit;
 
 
 import rx.Observable;

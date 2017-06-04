@@ -7,32 +7,31 @@ import java.io.Serializable;
  */
 
 public class Model<T> implements Serializable {
-    private T data;
-    private int http_code;
-    private String msg = "";
+    private T result;
+    private int error_code;
+    private String reason = "";
 
-    public int getHttp_code() {
-        return http_code;
+    public T getResult() {
+        return result;
     }
 
-    public void setHttp_code(int http_code) {
-        this.http_code = http_code;
+    public void setResult(T result) {
+        this.result = result;
     }
 
-    public T getData() {
-        return data;
+    public int getError_code() {
+        return error_code;
     }
 
-    public void setData(T data) {
-        this.data = data;
+    public void setError_code(int error_code) {
+        this.error_code = error_code;
     }
 
-    public String getMsg() {
-        return msg;
+    public String getReason() {
+        return reason;
     }
 
-    public void setMsg(String msg) {
-        this.msg = msg;
+    public void setReason(String reason) {
+        this.reason = reason;
     }
-
 }

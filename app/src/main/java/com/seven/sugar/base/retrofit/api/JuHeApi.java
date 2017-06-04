@@ -1,7 +1,8 @@
 package com.seven.sugar.base.retrofit.api;
 
 import com.seven.sugar.base.BaseApi;
-import com.seven.sugar.main.model.bean.ChengYu;
+import com.seven.sugar.base.retrofit.model.Model;
+import com.seven.sugar.main.model.bean.ChengYuBean;
 
 import java.util.Map;
 
@@ -17,5 +18,5 @@ public interface JuHeApi {
 
     @FormUrlEncoded
     @POST(BaseApi.Url.URL_CHENG_YU_QUERY)
-    Observable<ChengYu> queryChengYu(@FieldMap Map<String, String> map);
+    Observable<Model<ChengYuBean>> queryChengYu(@FieldMap Map<String, String> map);
 }

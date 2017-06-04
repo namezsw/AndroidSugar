@@ -1,4 +1,4 @@
-package com.seven.library.model.http;
+package com.seven.library.model.okhttp;
 
 /**
  * Created by Seven on 2017/3/10.

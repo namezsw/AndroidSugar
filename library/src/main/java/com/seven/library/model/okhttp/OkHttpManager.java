@@ -1,4 +1,4 @@
-package com.seven.library.model.http;
+package com.seven.library.model.okhttp;
 
 
 import com.seven.library.util.Logger;

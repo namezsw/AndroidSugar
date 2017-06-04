@@ -1,4 +1,4 @@
-package com.seven.library.model.http;
+package com.seven.library.model.okhttp;
 
 /**
  * 缓存策略

@@ -1,4 +1,4 @@
-package com.seven.library.model.http.progress;
+package com.seven.library.model.okhttp.progress;
 
 /**
  * 请求体进度回调接口，比如用于文件上传中

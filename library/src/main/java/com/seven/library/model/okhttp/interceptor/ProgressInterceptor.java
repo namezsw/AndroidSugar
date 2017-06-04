@@ -1,8 +1,8 @@
-package com.seven.library.model.http.interceptor;
+package com.seven.library.model.okhttp.interceptor;
 
 
-import com.seven.library.model.http.progress.ProgressResponseBody;
-import com.seven.library.model.http.progress.ProgressResponseListener;
+import com.seven.library.model.okhttp.progress.ProgressResponseBody;
+import com.seven.library.model.okhttp.progress.ProgressResponseListener;
 
 import java.io.IOException;
 

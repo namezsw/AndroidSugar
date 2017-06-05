@@ -52,6 +52,7 @@ dependencies {
     compile rootProject.ext.dependencies["fresco"]
     compile rootProject.ext.dependencies["fresco-imagepipeline-okhttp3"]
     compile rootProject.ext.dependencies["recyclerview-flexibledivider"]
+    compile rootProject.ext.dependencies["ultra-ptr"]
     //tool
     compile rootProject.ext.dependencies["dagger2"]
     annotationProcessor rootProject.ext.dependencies["dagger2-compiler"]

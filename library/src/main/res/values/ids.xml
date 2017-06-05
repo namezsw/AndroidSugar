@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--PullToRefreshLayout-->
+    <item name="refresh_text" type="id" />
+    <item name="refresh_view" type="id" />
+</resources>

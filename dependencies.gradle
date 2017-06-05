@@ -50,6 +50,7 @@ project.ext {
             "fresco"                      : "com.facebook.fresco:fresco:${version["frescoSdkVersion"]}",
             "fresco-imagepipeline-okhttp3": "com.facebook.fresco:imagepipeline-okhttp3:${version["frescoSdkVersion"]}",
             "recyclerview-flexibledivider": "com.yqritc:recyclerview-flexibledivider:1.2.6",
+            "ultra-ptr"                   : "in.srain.cube:ultra-ptr:1.0.11",
 
             //tool
             "dagger2"                     : "com.google.dagger:dagger:${version["dagger2SdkVersion"]}",

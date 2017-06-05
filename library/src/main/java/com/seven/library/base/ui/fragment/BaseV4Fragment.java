@@ -94,6 +94,7 @@ public abstract class BaseV4Fragment extends Fragment implements LifecycleProvid
     public void onStop() {
         lifecycleSubject.onNext(FragmentEvent.STOP);
         super.onStop();
+        loading.dismiss();
     }
 
     @Override

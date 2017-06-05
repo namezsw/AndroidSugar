@@ -4,7 +4,7 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.seven.library.view.recycler.BasicViewHolder;
+import com.seven.library.view.recycler.BaseViewHolder;
 
 import java.io.Serializable;
 import java.util.List;
@@ -13,7 +13,7 @@ import java.util.List;
  * 加载更多适配器
  * Created by Seven on 2017/3/10.
  */
-public abstract class LoadMoreAdapter<Item extends Serializable, VH extends BasicViewHolder> extends BasicAdapter<Item, VH> {
+public abstract class LoadMoreAdapter<Item extends Serializable, VH extends BaseViewHolder> extends BaseAdapter<Item, VH> {
     private static final int TYPE_FOOTER = 0xBB;
 
     private int mFooterSize = 0;
@@ -79,7 +79,7 @@ public abstract class LoadMoreAdapter<Item extends Serializable, VH extends Basi
     /**
      * 尾部视图
      */
-    static class FooterViewHolder extends BasicViewHolder {
+    static class FooterViewHolder extends BaseViewHolder {
 
         public FooterViewHolder(View itemView) {
             super(itemView);

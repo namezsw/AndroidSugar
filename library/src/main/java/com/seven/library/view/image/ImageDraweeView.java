@@ -1,7 +1,6 @@
 package com.seven.library.view.image;
 
 import android.content.Context;
-import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -17,22 +16,18 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import com.facebook.imagepipeline.common.ResizeOptions;
 import com.facebook.imagepipeline.request.ImageRequest;
 import com.facebook.imagepipeline.request.ImageRequestBuilder;
-import com.seven.library.R;
 import com.seven.library.util.ResourcesUtils;
 import com.seven.library.view.image.processor.PictureProcessor;
 import com.seven.library.view.image.processor.ProcessorInterface;
 
 
 /**
- * 图片加载控件
+ * Fresco图片加载控件
  * Created by Seven on 2017/2/15.
  */
 public class ImageDraweeView extends SimpleDraweeView {
     private ResizeOptions mResizeOptions;
     private PictureProcessor mProcessor;
-
-    private float mRatio;
-    private Drawable mDefaultDrawable;
 
     public ImageDraweeView(Context context) {
         this(context, null);
@@ -40,14 +35,6 @@ public class ImageDraweeView extends SimpleDraweeView {
 
     public ImageDraweeView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.ImageDraweeView);
-        mRatio = array.getFloat(R.styleable.ImageDraweeView_aspect_ratio, -1f);
-        if (mRatio != -1f)
-            setAspectRatio(mRatio);
-        mDefaultDrawable = array.getDrawable(R.styleable.ImageDraweeView_default_drawable);
-        if (mDefaultDrawable != null)
-            setDefaultImage(mDefaultDrawable);
-        array.recycle();
         init(context);
     }
 
@@ -139,23 +126,6 @@ public class ImageDraweeView extends SimpleDraweeView {
      */
     public void setImageURL(String url) {
         setImageURL(url, false);
-       /* if (TextUtils.isEmpty(url))
-            return;
-        Uri uri = Uri.parse(url);
-        setImageURI(uri);
-        ImageRequest request = ImageRequestBuilder.newBuilderWithSource(uri)
-//                .setPostprocessor(mProcessor)
-                .setAutoRotateEnabled(true)
-                .setLocalThumbnailPreviewsEnabled(true)
-                .setResizeOptions(mResizeOptions)
-                .build();
-        DraweeController controller = Fresco.newDraweeControllerBuilder()
-                .setAutoPlayAnimations(true)
-                .setImageRequest(request)
-                .setTapToRetryEnabled(true)//加载失败时点击重新加载
-                .setOldController(getController())
-                .build();
-        setController(controller);*/
     }
 
     /**

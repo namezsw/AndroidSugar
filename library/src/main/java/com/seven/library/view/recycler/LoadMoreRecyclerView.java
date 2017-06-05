@@ -13,7 +13,7 @@ import com.seven.library.view.recycler.adapter.LoadMoreAdapter;
  * 上拉加载更多RecyclerView
  * Created by Seven on 2017/3/10.
  */
-public class LoadMoreRecyclerView extends BasicRecyclerView {
+public class LoadMoreRecyclerView extends BaseRecyclerView {
     private static final String TAG = LoadMoreRecyclerView.class.getSimpleName();
     private LoadingMoreFooter mFootView;//加载布局
     private boolean isLoading = false;//是否正在加载
@@ -130,73 +130,7 @@ public class LoadMoreRecyclerView extends BasicRecyclerView {
      * 加载更多回调
      */
     public interface OnLoadMoreListener {
-
         void onLoadMore();
     }
 
-    /**
-     * 设置没有更多时文字
-     *
-     * @param noMoreText 没有更多时文字
-     */
-    public void setNoMoreText(String noMoreText) {
-        mFootView.setNoMoreText(noMoreText);
-    }
-//    private float startY = -1;
-//    private float startX = -1;
-//
-//
-//
-//    @Override
-//    public boolean onTouchEvent(MotionEvent ev) {
-//        switch (ev.getAction()) {
-//            case MotionEvent.ACTION_DOWN:
-//                startY = ev.getY();
-//                startX = ev.getX();
-//                break;
-//            case MotionEvent.ACTION_MOVE:
-//
-//                float moveX = ev.getX();
-//                float moveY = ev.getY();
-//
-//                float diffX = moveX - startX;
-//                float diffY = moveY - startY;
-//
-//                if (Math.abs(diffX) > Math.abs(diffY)) {
-//                    //水平滑动
-//                    return false;
-//                }
-//                break;
-//            case MotionEvent.ACTION_UP:
-//                break;
-//        }
-//        return super.onTouchEvent(ev);
-//    }
-
-//    @Override
-//    public boolean onInterceptTouchEvent(MotionEvent ev) {
-//
-//        switch (ev.getAction()) {
-//            case MotionEvent.ACTION_DOWN:
-//                startY = ev.getY();
-//                startX = ev.getX();
-//                break;
-//            case MotionEvent.ACTION_MOVE:
-//
-//                float moveX = ev.getX();
-//                float moveY = ev.getY();
-//
-//                float diffX = moveX - startX;
-//                float diffY = moveY - startY;
-//
-//                if (Math.abs(diffX) > Math.abs(diffY)) {
-//                    //水平滑动
-//                    return false;
-//                }
-//                break;
-//            case MotionEvent.ACTION_UP:
-//                break;
-//        }
-//        return super.onInterceptTouchEvent(ev);
-//    }
 }

@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!--ImageDraweeView-->
-    <declare-styleable name="ImageDraweeView">
-        <attr name="aspect_ratio" format="float" />
-        <attr name="default_drawable" format="reference" />
-    </declare-styleable>
     <!--BasicRecyclerView-->
-    <declare-styleable name="BasicRecyclerView">
+    <declare-styleable name="BaseRecyclerView">
         <attr name="layout_mode" format="enum">
             <enum name="horizontal" value="0" />
             <enum name="vertical" value="1" />
@@ -24,8 +19,6 @@
         <attr name="divider_marginBottom" format="dimension" />
         <attr name="divider_color" format="color" />
         <attr name="is_inner" format="boolean" />
-        <attr name="is_process" format="boolean" />
-        <attr name="process_background" format="integer|reference" />
         <attr name="is_start_animator" format="boolean" />
         <attr name="is_first_only" format="boolean" />
         <attr name="duration_animator" format="integer" />

@@ -9,9 +9,9 @@ import butterknife.ButterKnife;
  * 重新封装ViewHolder
  * Created by Seven on 2017/3/10.
  */
-public class BasicViewHolder extends RecyclerView.ViewHolder {
+public class BaseViewHolder extends RecyclerView.ViewHolder {
 
-    public BasicViewHolder(View itemView) {
+    public BaseViewHolder(View itemView) {
         super(itemView);
         ButterKnife.bind(this, itemView);
     }

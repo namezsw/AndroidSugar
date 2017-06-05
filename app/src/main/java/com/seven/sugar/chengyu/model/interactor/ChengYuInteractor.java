@@ -2,11 +2,12 @@ package com.seven.sugar.chengyu.model.interactor;
 
 
 import com.seven.library.base.di.scope.ActivityScope;
+import com.seven.library.model.retrofit.RxRetrofitComposer;
 import com.seven.sugar.base.retrofit.api.JuHeApi;
 import com.seven.sugar.base.retrofit.model.Model;
-import com.seven.sugar.main.Constants;
 import com.seven.sugar.chengyu.contract.ChengYuContract;
 import com.seven.sugar.chengyu.model.bean.ChengYuBean;
+import com.seven.sugar.main.Constants;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -35,7 +36,8 @@ public class ChengYuInteractor implements ChengYuContract.Interactor {
         Map<String, String> params = new HashMap<>();
         params.put(Constants.Parameter.PARAM_KEY, Constants.JUHE_APP_KEY);
         params.put(Constants.Parameter.PARAM_WORD, word);
-        return juHeApi.queryChengYu(params);
+        return juHeApi.queryChengYu(params)
+                .compose(RxRetrofitComposer.<Model<ChengYuBean>>applySchedulers());
     }
 
     @Override

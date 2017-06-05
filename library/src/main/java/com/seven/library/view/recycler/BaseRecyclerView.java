@@ -9,8 +9,8 @@ import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 
 import com.seven.library.R;
-import com.seven.library.view.recycler.adapter.BasicAdapter;
-import com.seven.library.view.recycler.animators.BasicItemAnimator;
+import com.seven.library.view.recycler.adapter.BaseAdapter;
+import com.seven.library.view.recycler.animators.BaseItemAnimator;
 import com.seven.library.view.recycler.layoutmanager.InnerGridLayoutManager;
 import com.seven.library.view.recycler.layoutmanager.InnerLinearLayoutManager;
 import com.seven.library.view.recycler.listener.OnItemClickListener;
@@ -23,7 +23,7 @@ import com.yqritc.recyclerviewflexibledivider.VerticalDividerItemDecoration;
  * 提供基本处理的RecyclerView
  * Created by Seven on 2017/3/10.
  */
-public class BasicRecyclerView extends RecyclerView {
+public class BaseRecyclerView extends RecyclerView {
     public static final int HORIZONTAL = 0;
     public static final int VERTICAL = 1;
     public static final int INVALID_OFFSET = 2;
@@ -39,46 +39,42 @@ public class BasicRecyclerView extends RecyclerView {
     private int divider_height;//行间隔线的高度
     private int divider_color;//间隔线的颜色
     private int divider_marginLeft, divider_marginRight, divider_marginTop, divider_marginBottom;
-    private boolean isProcess;
-    private int mProcessBackground;//点击时背景色
     private boolean isStartAnimator;
     private int mDuration;//动画持续时间
     private boolean isFirstOnly;
 
-    public BasicRecyclerView(Context context) {
+    public BaseRecyclerView(Context context) {
         this(context, null, 0);
     }
 
-    public BasicRecyclerView(Context context, AttributeSet attrs) {
+    public BaseRecyclerView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public BasicRecyclerView(Context context, AttributeSet attrs, int defStyle) {
+    public BaseRecyclerView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         initStyleable(context, attrs);
         initView(context);
     }
 
     private void initStyleable(Context context, AttributeSet attrs) {
-        TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.BasicRecyclerView);
-        layout_mode = array.getInt(R.styleable.BasicRecyclerView_layout_mode, VERTICAL);
-        column_num = array.getInt(R.styleable.BasicRecyclerView_column_num, 3);
-        has_row_divider = array.getBoolean(R.styleable.BasicRecyclerView_has_row_divider, false);
-        has_rank_divider = array.getBoolean(R.styleable.BasicRecyclerView_has_rank_divider, false);
+        TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.BaseRecyclerView);
+        layout_mode = array.getInt(R.styleable.BaseRecyclerView_layout_mode, VERTICAL);
+        column_num = array.getInt(R.styleable.BaseRecyclerView_column_num, 3);
+        has_row_divider = array.getBoolean(R.styleable.BaseRecyclerView_has_row_divider, false);
+        has_rank_divider = array.getBoolean(R.styleable.BaseRecyclerView_has_rank_divider, false);
 
-        isInner = array.getBoolean(R.styleable.BasicRecyclerView_is_inner, false);
-        divider_width = (int) array.getDimension(R.styleable.BasicRecyclerView_divider_width, 1f);
-        divider_height = (int) array.getDimension(R.styleable.BasicRecyclerView_divider_height, 1f);
-        divider_marginLeft = (int) array.getDimension(R.styleable.BasicRecyclerView_divider_marginLeft, 0f);
-        divider_marginRight = (int) array.getDimension(R.styleable.BasicRecyclerView_divider_marginRight, 0f);
-        divider_marginTop = (int) array.getDimension(R.styleable.BasicRecyclerView_divider_marginTop, 0f);
-        divider_marginBottom = (int) array.getDimension(R.styleable.BasicRecyclerView_divider_marginBottom, 0f);
-        divider_color = array.getColor(R.styleable.BasicRecyclerView_divider_color, Color.parseColor("#00000000"));
-        isProcess = array.getBoolean(R.styleable.BasicRecyclerView_is_process, false);
-        mProcessBackground = array.getInteger(R.styleable.BasicRecyclerView_process_background, R.drawable.recyclerview_background);
-        isStartAnimator = array.getBoolean(R.styleable.BasicRecyclerView_is_start_animator, false);
-        mDuration = array.getInt(R.styleable.BasicRecyclerView_duration_animator, 300);
-        isFirstOnly = array.getBoolean(R.styleable.BasicRecyclerView_is_first_only, false);
+        isInner = array.getBoolean(R.styleable.BaseRecyclerView_is_inner, false);
+        divider_width = (int) array.getDimension(R.styleable.BaseRecyclerView_divider_width, 1f);
+        divider_height = (int) array.getDimension(R.styleable.BaseRecyclerView_divider_height, 1f);
+        divider_marginLeft = (int) array.getDimension(R.styleable.BaseRecyclerView_divider_marginLeft, 0f);
+        divider_marginRight = (int) array.getDimension(R.styleable.BaseRecyclerView_divider_marginRight, 0f);
+        divider_marginTop = (int) array.getDimension(R.styleable.BaseRecyclerView_divider_marginTop, 0f);
+        divider_marginBottom = (int) array.getDimension(R.styleable.BaseRecyclerView_divider_marginBottom, 0f);
+        divider_color = array.getColor(R.styleable.BaseRecyclerView_divider_color, Color.parseColor("#00000000"));
+        isStartAnimator = array.getBoolean(R.styleable.BaseRecyclerView_is_start_animator, false);
+        mDuration = array.getInt(R.styleable.BaseRecyclerView_duration_animator, 300);
+        isFirstOnly = array.getBoolean(R.styleable.BaseRecyclerView_is_first_only, false);
         array.recycle();
     }
 
@@ -88,25 +84,25 @@ public class BasicRecyclerView extends RecyclerView {
     private void initView(Context context) {
         setOverScrollMode(OVER_SCROLL_NEVER);
         switch (layout_mode) {
-            case BasicRecyclerView.HORIZONTAL:
+            case BaseRecyclerView.HORIZONTAL:
                 if (!isInner)
                     manager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
                 else
                     manager = new InnerLinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
                 break;
-            case BasicRecyclerView.VERTICAL:
+            case BaseRecyclerView.VERTICAL:
                 if (!isInner)
                     manager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
                 else
                     manager = new InnerLinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
                 break;
-            case BasicRecyclerView.INVALID_OFFSET:
+            case BaseRecyclerView.INVALID_OFFSET:
                 if (!isInner)
                     manager = new LinearLayoutManager(context, LinearLayoutManager.INVALID_OFFSET, false);
                 else
                     manager = new InnerLinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
                 break;
-            case BasicRecyclerView.GRID:
+            case BaseRecyclerView.GRID:
                 if (!isInner) {
                     manager = new GridLayoutManager(context, column_num);
                 } else {
@@ -118,7 +114,7 @@ public class BasicRecyclerView extends RecyclerView {
         //排版方式
         setLayoutManager(manager);
         //添加删除的动画
-        setItemAnimator(new BasicItemAnimator());
+        setItemAnimator(new BaseItemAnimator());
         //添加间隔线
         if (has_row_divider) {
             HorizontalDividerItemDecoration decoration = new HorizontalDividerItemDecoration.Builder(context)
@@ -141,40 +137,39 @@ public class BasicRecyclerView extends RecyclerView {
 
     @Override
     public void setAdapter(Adapter adapter) {
-        BasicAdapter basicAdapter = getBasicAdapter(adapter);
-        if (isProcess) basicAdapter.setProcessDrawable(mProcessBackground);
-        basicAdapter.setStartAnimation(isStartAnimator);
-        basicAdapter.setDuration(mDuration);
-        basicAdapter.setFirstOnly(isFirstOnly);
-        super.setAdapter(basicAdapter);
+        BaseAdapter baseAdapter = getBaseAdapter(adapter);
+        baseAdapter.setStartAnimation(isStartAnimator);
+        baseAdapter.setDuration(mDuration);
+        baseAdapter.setFirstOnly(isFirstOnly);
+        super.setAdapter(baseAdapter);
     }
 
     /**
-     * 获得BasicAdapter实例
+     * 获得BaseAdapter实例
      *
-     * @return BasicAdapter实例
+     * @return BaseAdapter实例
      */
-    private BasicAdapter getBasicAdapter(Adapter adapter) {
-        if (!(adapter instanceof BasicAdapter))
-            throw new RuntimeException("adapter的的类型必须是BasicAdapter");
-        return (BasicAdapter) adapter;
+    private BaseAdapter getBaseAdapter(Adapter adapter) {
+        if (!(adapter instanceof BaseAdapter))
+            throw new RuntimeException("adapter的的类型必须是BaseAdapter");
+        return (BaseAdapter) adapter;
     }
 
     /**
-     * 获得BasicAdapter实例
+     * 获得BaseAdapter实例
      *
-     * @return BasicAdapter实例
+     * @return BaseAdapter实例
      */
-    private BasicAdapter getBasicAdapter() {
-        return getBasicAdapter(getAdapter());
+    private BaseAdapter getBaseAdapter() {
+        return getBaseAdapter(getAdapter());
     }
 
     public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
-        getBasicAdapter().setOnItemClickListener(onItemClickListener);
+        getBaseAdapter().setOnItemClickListener(onItemClickListener);
     }
 
     public void setOnItemLongClickListener(OnItemLongClickListener onItemLongClickListener) {
-        getBasicAdapter().setOnItemLongClickListener(onItemLongClickListener);
+        getBaseAdapter().setOnItemLongClickListener(onItemLongClickListener);
     }
 
 }

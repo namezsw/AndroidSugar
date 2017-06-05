@@ -10,7 +10,7 @@ import android.view.animation.Interpolator;
 import android.view.animation.LinearInterpolator;
 
 import com.seven.library.util.Logger;
-import com.seven.library.view.recycler.BasicViewHolder;
+import com.seven.library.view.recycler.BaseViewHolder;
 import com.seven.library.view.recycler.animators.IAnimation;
 import com.seven.library.view.recycler.animators.ViewHelper;
 import com.seven.library.view.recycler.listener.OnItemClickListener;
@@ -25,17 +25,13 @@ import java.util.List;
  * 重新封装Adapter
  * Created by Seven on 2017/3/10.
  */
-public abstract class BasicAdapter<Item extends Serializable, VH extends BasicViewHolder> extends RecyclerView.Adapter<VH> {
+public abstract class BaseAdapter<Item extends Serializable, VH extends BaseViewHolder> extends RecyclerView.Adapter<VH> {
     protected Context context;
     protected List<Item> mItems;
     private OnItemClickListener<Item> mOnItemClickListener;
     private OnItemLongClickListener mOnItemLongClickListener;
 
-    //    private boolean isProcess = false;
-    private View mItemView;
-
     private int mProcessDrawable;
-
     private boolean isStartAnimation = false;//是否开启ItemView动画
     private boolean isFirstOnly = false;
     private int mDuration;
@@ -55,7 +51,7 @@ public abstract class BasicAdapter<Item extends Serializable, VH extends BasicVi
         mProcessDrawable = processDrawable;
     }
 
-    public BasicAdapter(Context context, List<Item> items) {
+    public BaseAdapter(Context context, List<Item> items) {
         this.context = context;
         this.mItems = items != null ? items : new ArrayList<Item>();
         mInterpolator = new LinearInterpolator();
@@ -132,9 +128,9 @@ public abstract class BasicAdapter<Item extends Serializable, VH extends BasicVi
 
     @Override
     public VH onCreateViewHolder(ViewGroup parent, int viewType) {
-        mItemView = LayoutInflater.from(context).inflate(getLayoutId(viewType), parent, false);
-        mItemView.setBackgroundResource(mProcessDrawable);
-        return getViewHolder(mItemView, viewType);
+        View view = LayoutInflater.from(context).inflate(getLayoutId(viewType), parent, false);
+        if (mProcessDrawable != 0) view.setBackgroundResource(mProcessDrawable);
+        return getViewHolder(view, viewType);
     }
 
     @Override
@@ -145,22 +141,8 @@ public abstract class BasicAdapter<Item extends Serializable, VH extends BasicVi
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                if (!PhoneUtil.isFastDoubleClick()) {
                 if (mOnItemClickListener != null)
                     mOnItemClickListener.onItemClick(item, position);
-//                } else {
-//                    Logger.e("重复点击");
-//                }
-//                if (isProcess) Logger.e("重复点击");
-//                if (mOnItemClickListener != null && !isProcess)
-//                    mOnItemClickListener.onItemClick(item, position);
-//                isProcess = true;
-//                new Handler().postDelayed(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        isProcess = false;
-//                    }
-//                }, 200);
             }
         });
         itemView.setOnLongClickListener(new View.OnLongClickListener() {

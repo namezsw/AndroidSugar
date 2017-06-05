@@ -14,7 +14,7 @@ import java.util.List;
  * 基础Item动画
  * Created by Seven on 2017/3/10.
  */
-public class BasicItemAnimator extends DefaultItemAnimator {
+public class BaseItemAnimator extends DefaultItemAnimator {
     private static final boolean DEBUG = false;
 
     private ArrayList<RecyclerView.ViewHolder> mPendingRemovals = new ArrayList<>();

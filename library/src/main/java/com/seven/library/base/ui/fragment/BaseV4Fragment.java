@@ -118,7 +118,6 @@ public abstract class BaseV4Fragment extends Fragment implements LifecycleProvid
         unbinder.unbind();
         if (useEventBus())
             EventBusHelper.unregister(this);
-
     }
 
     protected boolean useEventBus() {

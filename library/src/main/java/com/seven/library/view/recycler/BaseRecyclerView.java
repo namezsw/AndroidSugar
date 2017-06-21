@@ -11,12 +11,13 @@ import android.util.AttributeSet;
 import com.seven.library.R;
 import com.seven.library.view.recycler.adapter.BaseAdapter;
 import com.seven.library.view.recycler.animators.BaseItemAnimator;
+import com.seven.library.view.recycler.divider.HorizontalDividerItemDecoration;
+import com.seven.library.view.recycler.divider.VerticalDividerItemDecoration;
 import com.seven.library.view.recycler.layoutmanager.InnerGridLayoutManager;
 import com.seven.library.view.recycler.layoutmanager.InnerLinearLayoutManager;
 import com.seven.library.view.recycler.listener.OnItemClickListener;
 import com.seven.library.view.recycler.listener.OnItemLongClickListener;
-import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
-import com.yqritc.recyclerviewflexibledivider.VerticalDividerItemDecoration;
+
 
 
 /**

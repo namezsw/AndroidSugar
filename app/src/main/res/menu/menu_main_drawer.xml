@@ -4,30 +4,30 @@
     <group android:checkableBehavior="single" android:id="@+id/nav_group">
         <item
             android:id="@+id/nav_camera"
-            android:icon="@mipmap/ic_more_gray"
+            android:icon="@drawable/ic_more_gray"
             android:title="Import" />
         <item
             android:id="@+id/nav_gallery"
-            android:icon="@mipmap/ic_more_gray"
+            android:icon="@drawable/ic_more_gray"
             android:title="Gallery" />
         <item
             android:id="@+id/nav_slideshow"
-            android:icon="@mipmap/ic_more_gray"
+            android:icon="@drawable/ic_more_gray"
             android:title="Slideshow" />
         <item
             android:id="@+id/nav_manage"
-            android:icon="@mipmap/ic_more_gray"
+            android:icon="@drawable/ic_more_gray"
             android:title="Tools" />
     </group>
     <item android:title="社交">
         <menu>
             <item
                 android:id="@+id/nav_share"
-                android:icon="@mipmap/ic_more_gray"
+                android:icon="@drawable/ic_more_gray"
                 android:title="分享" />
             <item
                 android:id="@+id/nav_send"
-                android:icon="@mipmap/ic_more_gray"
+                android:icon="@drawable/ic_more_gray"
                 android:title="反馈" />
         </menu>
     </item>

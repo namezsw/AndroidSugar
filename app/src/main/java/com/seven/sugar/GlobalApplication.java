@@ -13,9 +13,10 @@ import com.squareup.leakcanary.LeakCanary;
  */
 public class GlobalApplication extends BaseApplication {
 
-    private static GlobalApplication appContext;
+    private static GlobalApplication application;
+
     public static GlobalApplication getInstance() {
-        return appContext;
+        return application;
     }
 
     private AppComponent appComponent;
@@ -23,7 +24,7 @@ public class GlobalApplication extends BaseApplication {
     @Override
     public void onCreate() {
         super.onCreate();
-        appContext = this;
+        application = this;
         appComponent = DaggerAppComponent.builder()
                 .baseComponent(baseComponent)
                 .build();
@@ -43,7 +44,7 @@ public class GlobalApplication extends BaseApplication {
     }
 
     @Override
-    public boolean isDebug() {
+    protected boolean isDebug() {
         return BaseApi.isDebug();
     }
 

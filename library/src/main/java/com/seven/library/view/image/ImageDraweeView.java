@@ -39,9 +39,6 @@ public class ImageDraweeView extends SimpleDraweeView {
     }
 
     private void init(Context context) {
-        GenericDraweeHierarchy hierarchy = getHierarchy();
-        hierarchy.setFadeDuration(0);//淡入淡出
-        setHierarchy(hierarchy);
         mProcessor = new PictureProcessor(context);
     }
 

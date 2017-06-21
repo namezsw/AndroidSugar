@@ -1,6 +1,7 @@
 package com.seven.library;
 
 import android.app.Application;
+import android.content.Context;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.seven.library.base.di.component.BaseComponent;
@@ -18,10 +19,12 @@ import com.seven.library.view.image.ImagePipelineConfigFactory;
  */
 public abstract class BaseApplication extends Application {
 
-    private static BaseApplication appContext;
-    public static BaseApplication getInstance() {
+    private static Context appContext;
+
+    public static Context getInstance() {
         return appContext;
     }
+
     public static String sdCardPath;
 
     private BaseActivityLifecycleCallback activityLifecycleCallbacks;
@@ -30,7 +33,7 @@ public abstract class BaseApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        appContext = this;
+        appContext = getApplicationContext();
         sdCardPath = getSDCardPath();
         //API环境初始化
         initEnvironment();

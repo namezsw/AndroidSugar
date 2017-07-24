@@ -1,8 +1,8 @@
 # AndroidSugar
-Android集成开发框架，本框架为一款甜品级开发框架，适合大多数的Android项目，能帮助开发人员快速搭建一个结构清晰、可扩展性强的Android Application。整个项目为MVP模块化架构，集成RxJava+Dagger2+Retrofit，同时集成了目前Android中重要功能的主流开源库，并进行了封装。项目仍处于不断的更新中。
+Android集成开发框架，本框架为一款甜品级开发框架，适合大多数的Android项目，能帮助开发人员快速搭建一个结构清晰、可扩展性强的Android Application。整个项目为MVP架构，集成RxJava+Dagger2+Retrofit，同时集成了目前Android中重要功能的主流开源库，并进行了二次封装。项目仍处于不断的更新中。
 
 ## 主要架构
-MVP架构，使用RxJava+Dagger2+Retrofit，减少耦合。使用lib + app
+MVP架构，使用RxJava+Dagger2+Retrofit，各自功能模块相互独立，减少耦合。
 
 ## 集成主流开源库
 * RxJava
@@ -10,7 +10,6 @@ MVP架构，使用RxJava+Dagger2+Retrofit，减少耦合。使用lib + app
 * Retrofit
 * OKHttp3
 * ButterKnife
-* EventBus3
 * EventBus3
 * RetroLambda
 * FastJson

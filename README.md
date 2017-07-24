@@ -24,7 +24,7 @@ MVP架构，使用RxJava+Dagger2+Retrofit，各自功能模块相互独立，减
 * Material Design使用示例；
 * Java8 Lambda表达式的用法；
 * 上述罗列的各种开源框架的使用方法及二次封装；
-* 各种工具类的封装；
-* 如何快速搭建一款结构清晰、可扩展性强的Android Application。
-* 如何更好的管理Gradle依赖库的版本；
+* 封装各种工具类；
+* 快速搭建一款结构清晰、可扩展性强的Android Application。
+* 更好的管理Gradle依赖库的版本；
 

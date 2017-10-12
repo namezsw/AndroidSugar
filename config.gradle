@@ -1,5 +1,3 @@
-def supportVersion = "25.1.0"
-
 project.ext {
     android = [
             compileSdkVersion: 25,
@@ -9,6 +7,12 @@ project.ext {
             targetSdkVersion : 25,
             versionCode      : 1,
             versionName      : "1.0"
+    ]
+
+    plugins = [
+            application  : "com.android.application",
+            library      : "com.android.library",
+            retrolambda  : "me.tatarka.retrolambda"
     ]
 
     version = [

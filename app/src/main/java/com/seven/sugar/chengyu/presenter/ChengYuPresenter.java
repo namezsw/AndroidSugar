@@ -32,6 +32,7 @@ public class ChengYuPresenter extends BasePresenter<ChengYuContract.View, ChengY
 
                     @Override
                     public void onNext(String msg, Model<ChengYuBean> chengYuBeanModel) {
+                        mView.hideLoading();
                         if (chengYuBeanModel.getResult() != null) {
                             mView.showChengYu(chengYuBeanModel.getResult());
                         }

@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 
 import com.seven.library.controller.EventBusHelper;
 import com.seven.library.view.LoadingHUD;
-import com.trello.rxlifecycle.components.RxFragment;
+import com.trello.rxlifecycle2.components.support.RxFragment;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;

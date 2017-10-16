@@ -6,7 +6,7 @@ import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.TextView;
 
-import com.seven.library.base.ui.fragment.BaseLazyFragment;
+import com.seven.library.base.ui.fragment.BaseFragment;
 import com.seven.sugar.R;
 import com.seven.sugar.chengyu.ui.ChengYuActivity;
 
@@ -17,7 +17,7 @@ import butterknife.OnClick;
  * MainFragment
  * Created by Seven on 2017/3/20.
  */
-public class MainFragment extends BaseLazyFragment {
+public class MainFragment extends BaseFragment {
 
     @BindView(R.id.tv_info)
     TextView tvInfo;
@@ -28,7 +28,7 @@ public class MainFragment extends BaseLazyFragment {
     }
 
     @Override
-    public void onViewCreateFinish(View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreatedFinish(@Nullable Bundle savedInstanceState) {
         tvInfo.setText(getArguments().getString("info"));
     }
 

@@ -6,7 +6,8 @@ import com.seven.library.base.ui.IView;
 import com.seven.sugar.base.retrofit.model.Model;
 import com.seven.sugar.chengyu.model.bean.ChengYuBean;
 
-import rx.Observable;
+import io.reactivex.Observable;
+
 
 /**
  * Created by Seven on 2017/4/10.

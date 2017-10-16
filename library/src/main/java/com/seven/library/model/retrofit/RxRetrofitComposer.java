@@ -1,9 +1,13 @@
 package com.seven.library.model.retrofit;
 
 
-import rx.Observable;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
+import io.reactivex.Observable;
+import io.reactivex.ObservableSource;
+import io.reactivex.ObservableTransformer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.schedulers.Schedulers;
+
 
 /**
  * Created by Seven on 2017/3/10.
@@ -11,14 +15,18 @@ import rx.schedulers.Schedulers;
 
 public class RxRetrofitComposer {
 
-    public static <T> Observable.Transformer<T, T> applySchedulers() {
-        return new Observable.Transformer<T, T>() {
+    public static <T> ObservableTransformer<T, T> applySchedulers() {
+        return new ObservableTransformer <T, T>() {
             @Override
-            public Observable<T> call(Observable<T> observable) {
-                return observable.observeOn(AndroidSchedulers.mainThread())
+            public ObservableSource<T> apply(@NonNull Observable<T> upstream) {
+                return upstream.observeOn(AndroidSchedulers.mainThread())
                         .subscribeOn(Schedulers.io())
                         .unsubscribeOn(Schedulers.io());
             }
         };
     }
+
+
+
+
 }

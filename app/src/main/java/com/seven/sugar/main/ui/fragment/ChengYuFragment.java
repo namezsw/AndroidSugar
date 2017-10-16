@@ -5,7 +5,7 @@ import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.TextView;
 
-import com.seven.library.base.ui.fragment.BaseMVPLazyFragment;
+import com.seven.library.base.ui.fragment.BaseMVPFragment;
 import com.seven.sugar.GlobalApplication;
 import com.seven.sugar.R;
 import com.seven.sugar.chengyu.contract.ChengYuContract;
@@ -21,7 +21,7 @@ import butterknife.OnClick;
  * ChengYuFragment
  * Created by Seven on 2017/4/3.
  */
-public class ChengYuFragment extends BaseMVPLazyFragment<ChengYuPresenter> implements ChengYuContract.View {
+public class ChengYuFragment extends BaseMVPFragment<ChengYuPresenter> implements ChengYuContract.View {
 
     @BindView(R.id.tv_info)
     TextView tvInfo;
@@ -41,8 +41,8 @@ public class ChengYuFragment extends BaseMVPLazyFragment<ChengYuPresenter> imple
     }
 
     @Override
-    public void onViewCreateFinish(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreateFinish(view, savedInstanceState);
+    public void onViewCreatedFinish(@Nullable Bundle savedInstanceState) {
+        super.onViewCreatedFinish(savedInstanceState);
         tvInfo.setText(getArguments().getString("info"));
     }
 

@@ -4,7 +4,7 @@ import android.os.Bundle;
 
 import com.seven.library.controller.EventBusHelper;
 import com.seven.library.view.LoadingHUD;
-import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
+import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;

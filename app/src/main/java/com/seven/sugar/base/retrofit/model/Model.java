@@ -11,6 +11,10 @@ public class Model<T> implements Serializable {
     private int error_code;
     private String reason = "";
 
+    public boolean isSuccess() {
+        return error_code == 0;
+    }
+
     public T getResult() {
         return result;
     }

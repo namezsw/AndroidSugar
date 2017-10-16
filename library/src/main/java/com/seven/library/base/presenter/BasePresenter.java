@@ -3,7 +3,9 @@ package com.seven.library.base.presenter;
 import com.seven.library.base.model.IInteractor;
 import com.seven.library.base.ui.IView;
 
-import rx.subscriptions.CompositeSubscription;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
+
 
 /**
  * Created by Seven on 2017/4/10.
@@ -13,7 +15,7 @@ public class BasePresenter<V extends IView, M extends IInteractor> implements IP
 
     protected V mView;
     protected M mInteractor;
-    protected CompositeSubscription subscriptions = new CompositeSubscription();
+    private CompositeDisposable disposables;
 
     public BasePresenter(V view, M interactor) {
         mView = view;
@@ -27,7 +29,9 @@ public class BasePresenter<V extends IView, M extends IInteractor> implements IP
 
     @Override
     public void unSubscribe() {
-        subscriptions.unsubscribe();
+        if (disposables != null) {
+            disposables.clear();
+        }
     }
 
     @Override
@@ -39,4 +43,12 @@ public class BasePresenter<V extends IView, M extends IInteractor> implements IP
             mInteractor = null;
         }
     }
+
+    protected void addDisposable(Disposable disposable) {
+        if (disposables == null) {
+            disposables = new CompositeDisposable();
+        }
+        disposables.add(disposable);
+    }
+
 }

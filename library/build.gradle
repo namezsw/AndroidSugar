@@ -40,11 +40,9 @@ dependencies {
     compile rootProject.ext.dependencies["retrofit-adapter-rxjava"]
     compile rootProject.ext.dependencies["okhttp3"]
     compile rootProject.ext.dependencies["okhttp3-logging-interceptor"]
-    compile rootProject.ext.dependencies["httpclient"]
     //rx
     compile rootProject.ext.dependencies["rxjava"]
     compile rootProject.ext.dependencies["rxandroid"]
-    compile rootProject.ext.dependencies["rxlifecycle"]
     compile rootProject.ext.dependencies["rxlifecycle-components"]
     //view
     compile rootProject.ext.dependencies["butterknife"]

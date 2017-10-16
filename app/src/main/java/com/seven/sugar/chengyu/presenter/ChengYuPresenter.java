@@ -8,8 +8,6 @@ import com.seven.sugar.chengyu.model.bean.ChengYuBean;
 
 import javax.inject.Inject;
 
-import io.reactivex.Observer;
-import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
 
 
@@ -24,40 +22,21 @@ public class ChengYuPresenter extends BasePresenter<ChengYuContract.View, ChengY
     }
 
     public void queryChengYu(String word) {
-        Observer<ChengYuBean> observer= new Observer<ChengYuBean>() {
-
-            @Override
-            public void onSubscribe(Disposable d) {
-
-            }
-
-            @Override
-            public void onNext(ChengYuBean value) {
-
-
-            }
-
-            @Override
-            public void onError(Throwable e) {
-
-            }
-
-            @Override
-            public void onComplete() {
-            }
-        };
-
         mView.showLoading();
-        mInteractor.queryChengYu(word)
-                .subscribe(new ApiObserver<ChengYuBean>() {
+        Disposable disposable = mInteractor.queryChengYu(word)
+                .subscribeWith(new ApiObserver<ChengYuBean>() {
                     @Override
                     public void onNext(String msg, Model<ChengYuBean> chengYuBeanModel) {
-
+                        mView.hideLoading();
+                        if (chengYuBeanModel.getResult() != null) {
+                            mView.showChengYu(chengYuBeanModel.getResult());
+                        }
                     }
 
                     @Override
                     public void onError(int code, String msg) {
-
+                        mView.hideLoading();
+                        mView.showMessage(msg);
                     }
                 });
         addDisposable(disposable);

@@ -1,19 +1,13 @@
 package com.seven.sugar.base.retrofit.observer;
 
-import io.reactivex.Observer;
 import io.reactivex.annotations.NonNull;
-import io.reactivex.disposables.Disposable;
+import io.reactivex.observers.ResourceObserver;
 
 /**
  * Created by Seven on 2017/4/10.
  */
 
-abstract class BaseObserver<T> implements Observer<T> {
-
-    @Override
-    public void onSubscribe(@NonNull Disposable d) {
-
-    }
+abstract class BaseObserver<T> extends ResourceObserver<T> {
 
     @Override
     public void onComplete() {

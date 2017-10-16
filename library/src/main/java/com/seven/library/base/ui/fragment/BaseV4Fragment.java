@@ -12,16 +12,17 @@ import android.view.ViewGroup;
 
 import com.seven.library.controller.EventBusHelper;
 import com.seven.library.view.LoadingHUD;
-import com.trello.rxlifecycle.LifecycleProvider;
-import com.trello.rxlifecycle.LifecycleTransformer;
-import com.trello.rxlifecycle.RxLifecycle;
-import com.trello.rxlifecycle.android.FragmentEvent;
-import com.trello.rxlifecycle.android.RxLifecycleAndroid;
+import com.trello.rxlifecycle2.LifecycleProvider;
+import com.trello.rxlifecycle2.LifecycleTransformer;
+import com.trello.rxlifecycle2.RxLifecycle;
+import com.trello.rxlifecycle2.android.FragmentEvent;
+import com.trello.rxlifecycle2.android.RxLifecycleAndroid;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-import rx.Observable;
-import rx.subjects.BehaviorSubject;
+import io.reactivex.Observable;
+import io.reactivex.subjects.BehaviorSubject;
+
 
 /**
  * Created by Seven on 2017/4/10.
@@ -48,7 +49,6 @@ public abstract class BaseV4Fragment extends Fragment implements LifecycleProvid
     }
 
     @Override
-    @CallSuper
     public void onAttach(android.app.Activity activity) {
         super.onAttach(activity);
         lifecycleSubject.onNext(FragmentEvent.ATTACH);
@@ -120,15 +120,11 @@ public abstract class BaseV4Fragment extends Fragment implements LifecycleProvid
             EventBusHelper.unregister(this);
     }
 
-    protected boolean useEventBus() {
-        return false;
-    }
-
     @Override
     @NonNull
     @CheckResult
     public final Observable<FragmentEvent> lifecycle() {
-        return lifecycleSubject.asObservable();
+        return lifecycleSubject.hide();
     }
 
     @Override
@@ -143,5 +139,9 @@ public abstract class BaseV4Fragment extends Fragment implements LifecycleProvid
     @CheckResult
     public final <T> LifecycleTransformer<T> bindToLifecycle() {
         return RxLifecycleAndroid.bindFragment(lifecycleSubject);
+    }
+
+    protected boolean useEventBus() {
+        return false;
     }
 }

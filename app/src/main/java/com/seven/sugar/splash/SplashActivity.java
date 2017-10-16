@@ -9,10 +9,10 @@ import com.seven.sugar.main.ui.activity.MainActivity;
 
 import java.util.concurrent.TimeUnit;
 
-import rx.Observable;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
-import rx.schedulers.Schedulers;
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
+
 
 /**
  * Created by Seven on 2017/4/3.
@@ -35,13 +35,10 @@ public class SplashActivity extends BaseActivity {
         super.onResume();
         Observable.timer(2, TimeUnit.SECONDS).subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread()).compose(this.<Long>bindToLifecycle())
-                .subscribe(new Action1<Long>() {
-                    @Override
-                    public void call(Long aLong) {
-                        Intent intent = new Intent(SplashActivity.this, MainActivity.class);
-                        startActivity(intent);
-                        finish();
-                    }
+                .subscribe(aLong -> {
+                    Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+                    SplashActivity.this.startActivity(intent);
+                    SplashActivity.this.finish();
                 });
     }
 }

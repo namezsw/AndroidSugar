@@ -52,6 +52,8 @@ public class ChengYuFragment extends BaseMVPFragment<ChengYuPresenter> implement
             case R.id.tv_info:
                 mPresenter.queryChengYu("积少成多");
                 break;
+            default:
+                break;
         }
     }
 

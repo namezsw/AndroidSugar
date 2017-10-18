@@ -48,12 +48,14 @@ public class InnerLinearLayoutManager extends LinearLayoutManager {
 
             if (getOrientation() == HORIZONTAL) {
                 width = width + mMeasuredDimension[0];
-                if (i == 0)
+                if (i == 0) {
                     height = mMeasuredDimension[1];
+                }
             } else {
                 height = height + mMeasuredDimension[1];
-                if (i == 0)
+                if (i == 0) {
                     width = mMeasuredDimension[0];
+                }
             }
         }
         switch (widthMode) {

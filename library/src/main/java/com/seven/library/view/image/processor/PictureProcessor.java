@@ -37,7 +37,8 @@ public class PictureProcessor extends BaseRepeatedPostProcessor {
         for (ProcessorInterface processor : processorList) {
             processor.process(mContext, bitmap);
         }
-        if (null != mProcessorInterface)
+        if (null != mProcessorInterface) {
             mProcessorInterface.process(mContext, bitmap, mPosition);
+        }
     }
 }

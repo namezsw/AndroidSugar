@@ -44,8 +44,9 @@ abstract class FastJsonCallback<T extends Serializable> extends JSONObjectCallba
             onFinish(url, false, msg != null ? msg : "");
             return;
         }
-        if (StringUtils.equals(data, "[]") && !StringUtils.equals(getGenericClassName(), ArrayList.class.getName()))
+        if (StringUtils.equals(data, "[]") && !StringUtils.equals(getGenericClassName(), ArrayList.class.getName())) {
             data = null;
+        }
         JsonUtils.JsonType type = JsonUtils.getJSONType(data);
         switch (type) {
             case JSON_TYPE_OBJECT:
@@ -74,8 +75,9 @@ abstract class FastJsonCallback<T extends Serializable> extends JSONObjectCallba
             onFinish(url, false, result.getString("msg") != null ? result.getString("msg") : "");
             return;
         }
-        if (StringUtils.equals(data, "[]") && !StringUtils.equals(getGenericClassName(), ArrayList.class.getName()))
+        if (StringUtils.equals(data, "[]") && !StringUtils.equals(getGenericClassName(), ArrayList.class.getName())) {
             data = null;
+        }
         JsonUtils.JsonType type = JsonUtils.getJSONType(data);
         switch (type) {
             case JSON_TYPE_OBJECT:
@@ -94,14 +96,16 @@ abstract class FastJsonCallback<T extends Serializable> extends JSONObjectCallba
     @Override
     public void onFailure(String url, int statusCode, String msg) {
         Logger.e("请求错误:url=" + url + ",statusCode=" + statusCode + ",错误信息=" + msg);
-        if (!StringUtils.isEmpty(msg) && statusCode != -200)
+        if (!StringUtils.isEmpty(msg) && statusCode != -200) {
             ToastUtils.showToastLong(BaseApplication.getInstance(), msg);
+        }
     }
 
     @Override
     public void onFinish(String url, boolean isSuccess, String msg) {
-        if (!isSuccess)
+        if (!isSuccess) {
             Logger.w("服务器消息:" + msg);
+        }
     }
 
     /**
@@ -112,7 +116,7 @@ abstract class FastJsonCallback<T extends Serializable> extends JSONObjectCallba
     private String getGenericClassName() {
         Type genType = this.getClass().getGenericSuperclass();
         Type generic = ((ParameterizedType) genType).getActualTypeArguments()[0];
-        if (!(generic instanceof Class))
+        if (!(generic instanceof Class)) {
             try {
                 Field mRawTypeName = generic.getClass().getDeclaredField("rawTypeName");
                 mRawTypeName.setAccessible(true);
@@ -120,6 +124,7 @@ abstract class FastJsonCallback<T extends Serializable> extends JSONObjectCallba
             } catch (Exception e) {
                 Logger.e("获取泛型类型错误.", e);
             }
+        }
         return "";
     }
 

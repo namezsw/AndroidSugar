@@ -60,8 +60,9 @@ public class LoadMoreRecyclerView extends BaseRecyclerView {
                             Logger.d(TAG, "加载更多");
                             mFootView.setState(LoadingMoreFooter.STATE_LOADING);
                             isLoading = true;
-                            if (mOnLoadMoreListener != null)
+                            if (mOnLoadMoreListener != null) {
                                 mOnLoadMoreListener.onLoadMore();
+                            }
                         }
                         break;
                 }
@@ -70,10 +71,11 @@ public class LoadMoreRecyclerView extends BaseRecyclerView {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 //dy用来判断纵向滑动
-                if (dy > 0)
+                if (dy > 0) {
                     isSlidingToLast = true;
-                else
+                } else {
                     isSlidingToLast = false;
+                }
             }
         });
     }
@@ -81,8 +83,9 @@ public class LoadMoreRecyclerView extends BaseRecyclerView {
     @Override
     public void setAdapter(RecyclerView.Adapter adapter) {
         LoadMoreAdapter loadMoreAdapter = (LoadMoreAdapter) adapter;
-        if (!(loadMoreAdapter instanceof LoadMoreAdapter))
+        if (!(loadMoreAdapter instanceof LoadMoreAdapter)) {
             throw new RuntimeException("adapter类型必须是LoadMoreAdapter");
+        }
         loadMoreAdapter.addFooter(mFootView);
         super.setAdapter(loadMoreAdapter);
     }

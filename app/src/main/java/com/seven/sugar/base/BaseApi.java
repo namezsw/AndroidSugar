@@ -25,6 +25,8 @@ public class BaseApi {
             case HOST_DEV:
                 JU_HE_URL = "http://v.juhe.cn/";
                 break;
+            default:
+                break;
         }
     }
 

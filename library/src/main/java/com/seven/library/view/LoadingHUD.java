@@ -11,13 +11,15 @@ import android.widget.ImageView;
 
 import com.seven.library.R;
 
+import static com.seven.library.R.id.iv_icon;
+
 /**
  * loading对话框
  * Created by Seven on 2017/3/10.
  */
 public class LoadingHUD extends Dialog {
 
-    private ImageView iv_icon;
+    private ImageView ivIcon;
     private Context context;
     private RotateAnimation mRotateAnimation;//旋转动画
 
@@ -30,7 +32,7 @@ public class LoadingHUD extends Dialog {
         this.setCanceledOnTouchOutside(false);
         this.context = context;
         View view = getLayoutInflater().inflate(R.layout.widget_loading_dialog_progress, null);
-        iv_icon = (ImageView) view.findViewById(R.id.iv_icon);
+        ivIcon = (ImageView) view.findViewById(iv_icon);
         this.setContentView(view);
     }
 
@@ -47,13 +49,15 @@ public class LoadingHUD extends Dialog {
     @Override
     public void show() {
         try {
-            if (this.isShowing()) return;
+            if (this.isShowing()) {
+                return;
+            }
             if (!((Activity) context).isFinishing()) {
                 super.show();
-                if(mRotateAnimation == null){
+                if (mRotateAnimation == null) {
                     initAnimation();
                 }
-                iv_icon.startAnimation(mRotateAnimation);
+                ivIcon.startAnimation(mRotateAnimation);
             }
         } catch (Exception e) {
             e.printStackTrace();

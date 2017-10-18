@@ -86,22 +86,25 @@ public class BaseRecyclerView extends RecyclerView {
         setOverScrollMode(OVER_SCROLL_NEVER);
         switch (layout_mode) {
             case BaseRecyclerView.HORIZONTAL:
-                if (!isInner)
+                if (!isInner) {
                     manager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
-                else
+                } else {
                     manager = new InnerLinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
+                }
                 break;
             case BaseRecyclerView.VERTICAL:
-                if (!isInner)
+                if (!isInner) {
                     manager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
-                else
+                } else {
                     manager = new InnerLinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
+                }
                 break;
             case BaseRecyclerView.INVALID_OFFSET:
-                if (!isInner)
+                if (!isInner) {
                     manager = new LinearLayoutManager(context, LinearLayoutManager.INVALID_OFFSET, false);
-                else
+                } else {
                     manager = new InnerLinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
+                }
                 break;
             case BaseRecyclerView.GRID:
                 if (!isInner) {
@@ -151,8 +154,9 @@ public class BaseRecyclerView extends RecyclerView {
      * @return BaseAdapter实例
      */
     private BaseAdapter getBaseAdapter(Adapter adapter) {
-        if (!(adapter instanceof BaseAdapter))
+        if (!(adapter instanceof BaseAdapter)) {
             throw new RuntimeException("adapter的的类型必须是BaseAdapter");
+        }
         return (BaseAdapter) adapter;
     }
 

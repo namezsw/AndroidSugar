@@ -29,8 +29,9 @@ public class ActivityManager {
      * @return ActivityManager实例
      */
     public static ActivityManager getInstance() {
-        if (instance == null)
+        if (instance == null) {
             instance = new ActivityManager();
+        }
         return instance;
     }
 
@@ -99,8 +100,9 @@ public class ActivityManager {
      */
     public void finishActivity(Class<? extends Activity> activityClass) {
         for (Activity activity : activityStack) {
-            if (activityClass.equals(activity.getClass()))
+            if (activityClass.equals(activity.getClass())) {
                 finishActivity(activity);
+            }
         }
     }
 
@@ -111,8 +113,9 @@ public class ActivityManager {
      */
     public boolean hasActivity(Class<? extends Activity> activityClass) {
         for (Activity activity : activityStack) {
-            if (activityClass.equals(activity.getClass()))
+            if (activityClass.equals(activity.getClass())) {
                 return true;
+            }
         }
         return false;
     }
@@ -124,7 +127,9 @@ public class ActivityManager {
      * @param cls activityClass
      */
     public void popOtherActivity(Class<? extends Activity>... cls) {
-        if (null == cls) return;
+        if (null == cls) {
+            return;
+        }
         for (Activity activity : activityStack) {
             boolean isActExist = false;
             for (int i = 0; i < cls.length; i++) {
@@ -133,8 +138,9 @@ public class ActivityManager {
                     break;
                 }
             }
-            if (!isActExist)
+            if (!isActExist) {
                 activity.finish();
+            }
         }
     }
 

@@ -31,7 +31,7 @@ import butterknife.BindView;
  * MainActivity
  * Created by Seven on 2017/3/20.
  */
-public class MainActivity extends BaseMVPActivity<MainPresenter> implements MainContract.View  {
+public class MainActivity extends BaseMVPActivity<MainPresenter> implements MainContract.View {
 
     @BindView(R.id.drawer_layout)
     DrawerLayout drawerLayout;
@@ -146,6 +146,8 @@ public class MainActivity extends BaseMVPActivity<MainPresenter> implements Main
                             break;
                         case R.id.nav_send:
                             break;
+                        default:
+                            break;
                     }
                     drawerLayout.closeDrawer(GravityCompat.START);
                     return true;
@@ -169,6 +171,8 @@ public class MainActivity extends BaseMVPActivity<MainPresenter> implements Main
                             break;
                         case R.id.item_more:
                             viewPager.setCurrentItem(3);
+                            break;
+                        default:
                             break;
                     }
                     return false;

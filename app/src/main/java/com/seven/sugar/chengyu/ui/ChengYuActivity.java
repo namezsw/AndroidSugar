@@ -53,6 +53,8 @@ public class ChengYuActivity extends BaseMVPActivity<ChengYuPresenter> implement
             case R.id.test_text_view:
                 mPresenter.queryChengYu("积少成多");
                 break;
+            default:
+                break;
         }
     }
 

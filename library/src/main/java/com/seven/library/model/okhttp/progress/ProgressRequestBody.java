@@ -62,8 +62,9 @@ public class ProgressRequestBody extends RequestBody {
      */
     @Override
     public void writeTo(BufferedSink sink) throws IOException {
-        if (bufferedSink == null)
+        if (bufferedSink == null) {
             bufferedSink = Okio.buffer(sink(sink));//包装
+        }
         requestBody.writeTo(bufferedSink);//写入
         bufferedSink.flush();//必须调用flush，否则最后一部分数据可能不会被写入
     }
@@ -78,8 +79,9 @@ public class ProgressRequestBody extends RequestBody {
             @Override
             public void write(Buffer source, long byteCount) throws IOException {
                 super.write(source, byteCount);
-                if (contentLength == 0)
+                if (contentLength == 0) {
                     contentLength = contentLength();////获得contentLength的值，后续不再调用
+                }
                 bytesWritten += byteCount;//增加当前写入的字节数
                 //回调
                 progressListener.onRequestProgress(bytesWritten, contentLength, bytesWritten == contentLength);

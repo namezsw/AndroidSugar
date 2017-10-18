@@ -62,8 +62,9 @@ public class ProgressResponseBody extends ResponseBody {
      */
     @Override
     public BufferedSource source() {
-        if (bufferedSource == null)
+        if (bufferedSource == null) {
             bufferedSource = Okio.buffer(source(responseBody.source()));//包装
+        }
         return bufferedSource;
     }
 

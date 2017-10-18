@@ -49,9 +49,11 @@ public abstract class LoadMoreAdapter<Item extends Serializable, VH extends Base
     @Override
     public final int getItemViewType(int position) {
         if (position == getItemCount() - 1)//最后一个位置
+        {
             viewType = TYPE_FOOTER;
-        else
+        } else {
             viewType = getMultiItemViewType(position);
+        }
         return viewType;
     }
 
@@ -63,17 +65,19 @@ public abstract class LoadMoreAdapter<Item extends Serializable, VH extends Base
 
     @Override
     public VH onCreateViewHolder(ViewGroup parent, int viewType) {
-        if (viewType == TYPE_FOOTER)
+        if (viewType == TYPE_FOOTER) {
             holder = (VH) new FooterViewHolder(mFooterView);
-        else
+        } else {
             holder = super.onCreateViewHolder(parent, viewType);
+        }
         return holder;
     }
 
     @Override
     public void onBindViewHolder(VH holder, int position) {
-        if (!(holder instanceof FooterViewHolder))
+        if (!(holder instanceof FooterViewHolder)) {
             super.onBindViewHolder(holder, position);
+        }
     }
 
     /**

@@ -78,8 +78,9 @@ public abstract class JSONObjectCallback extends RequestCallback {
                         String url_failure = failure.getString(KEY_URL);
                         int statusCode = failure.getInt(KEY_STATUS_CODE);
                         String failure_msg = failure.getString(KEY_FAILURE_MSG);
-                        if (statusCode == 504)
+                        if (statusCode == 504) {
                             failure_msg = "请检查网络后重新尝试";
+                        }
                         onFailure(url_failure, statusCode, failure_msg);
                         //请求完成
                         onFinish(url_failure, false, failure_msg);
@@ -165,10 +166,11 @@ public abstract class JSONObjectCallback extends RequestCallback {
         Bundle bundle = new Bundle();
         bundle.putString(KEY_URL, url);
         bundle.putInt(KEY_STATUS_CODE, 500);
-        if (e instanceof SocketTimeoutException || e instanceof UnknownHostException)
+        if (e instanceof SocketTimeoutException || e instanceof UnknownHostException) {
             bundle.putString(KEY_FAILURE_MSG, "请检查网络后重新尝试");
-        else
+        } else {
             bundle.putString(KEY_FAILURE_MSG, e.getMessage());
+        }
         mHandler.sendMessage(Message.obtain(mHandler, RESULT_FAILURE, bundle));
     }
 

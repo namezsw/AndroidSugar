@@ -30,8 +30,8 @@ public class ImagePipelineConfigFactory {
      * @return ImagePipelineConfig
      */
     public static ImagePipelineConfig getImagePipelineConfig(Context context) {
-        if (sImagePipelineConfig == null)
-            sImagePipelineConfig = configureCaches(context, null);
+        if (sImagePipelineConfig == null){
+            sImagePipelineConfig = configureCaches(context, null);}
         return sImagePipelineConfig;
     }
 
@@ -43,8 +43,8 @@ public class ImagePipelineConfigFactory {
      * @return ImagePipelineConfig
      */
     public static ImagePipelineConfig getOkHttpImagePipelineConfig(Context context, OkHttpClient okHttpClient) {
-        if (sOkHttpImagePipelineConfig == null)
-            sOkHttpImagePipelineConfig = configureCaches(context, okHttpClient);
+        if (sOkHttpImagePipelineConfig == null){
+            sOkHttpImagePipelineConfig = configureCaches(context, okHttpClient);}
         return sOkHttpImagePipelineConfig;
     }
 
@@ -96,10 +96,11 @@ public class ImagePipelineConfigFactory {
                 .build();
         //缓存图片配置
         ImagePipelineConfig.Builder configBuilder = null;
-        if (okHttpClient != null)
+        if (okHttpClient != null) {
             configBuilder = OkHttpImagePipelineConfigFactory.newBuilder(context, okHttpClient);
-        else
+        } else {
             configBuilder = ImagePipelineConfig.newBuilder(context);
+        }
         configBuilder.setBitmapMemoryCacheParamsSupplier(mSupplierMemoryCacheParams)//内存缓存配置(一级缓存，已解码的图片)
 //            .setCacheKeyFactory(cacheKeyFactory)//缓存Key工厂
 //            .setEncodedMemoryCacheParamsSupplier(encodedCacheParamsSupplier)//内存缓存和未解码的内存缓存的配置(二级缓存)

@@ -87,10 +87,11 @@ public class RecyclerViewHeader extends RelativeLayout {
     private boolean isLayoutManagerReversed(RecyclerView recyclerView) {
         boolean reversed = false;
         RecyclerView.LayoutManager layoutManager = recyclerView.getLayoutManager();
-        if (layoutManager instanceof LinearLayoutManager)
+        if (layoutManager instanceof LinearLayoutManager) {
             reversed = ((LinearLayoutManager) layoutManager).getReverseLayout();
-        else if (layoutManager instanceof StaggeredGridLayoutManager)
+        } else if (layoutManager instanceof StaggeredGridLayoutManager) {
             reversed = ((StaggeredGridLayoutManager) layoutManager).getReverseLayout();
+        }
         return reversed;
     }
 
@@ -141,10 +142,11 @@ public class RecyclerViewHeader extends RelativeLayout {
                 int height = getRealHeight();
                 Logger.i("头部真实高度=" + height);
                 if (height > 0) {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN)
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                         RecyclerViewHeader.this.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-                    else
+                    } else {
                         RecyclerViewHeader.this.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+                    }
                     if (mAlreadyAligned) {
                         MarginLayoutParams params = (MarginLayoutParams) getLayoutParams();
                         height += params.topMargin;
@@ -164,7 +166,7 @@ public class RecyclerViewHeader extends RelativeLayout {
     private int getRealHeight() {
         int height = 0;
         View view = getChildAt(0);
-        if (view instanceof ScrollView)
+        if (view instanceof ScrollView) {
             for (int i = 0; i < ((ScrollView) view).getChildCount(); i++) {
                 View child = ((ScrollView) view).getChildAt(i);
                 if (child instanceof LinearLayout || child instanceof RelativeLayout || child instanceof FrameLayout) {
@@ -172,16 +174,18 @@ public class RecyclerViewHeader extends RelativeLayout {
                     height += child.getHeight();
                 }
             }
-        else if (view instanceof LinearLayout)
+        } else if (view instanceof LinearLayout) {
             for (int i = 0; i < ((LinearLayout) view).getChildCount(); i++) {
                 View child = ((LinearLayout) view).getChildAt(i);
-                if (child instanceof WebView)
+                if (child instanceof WebView) {
                     height += ((WebView) child).getContentHeight();
-                else
+                } else {
                     height += child.getHeight();
+                }
             }
-        else
+        } else {
             height = this.getHeight();
+        }
         return height;
     }
 
@@ -193,35 +197,41 @@ public class RecyclerViewHeader extends RelativeLayout {
      */
     private void validateRecyclerView(RecyclerView recyclerView, boolean headerAlreadyAligned) {
         RecyclerView.LayoutManager layoutManager = recyclerView.getLayoutManager();
-        if (layoutManager == null)
+        if (layoutManager == null) {
             throw new IllegalStateException("Be sure to call RecyclerViewHeader constructor after setting your RecyclerView's LayoutManager.");
-        else if (layoutManager.getClass() != LinearLayoutManager.class    //not using instanceof on purpose
+        } else if (layoutManager.getClass() != LinearLayoutManager.class    //not using instanceof on purpose
                 && layoutManager.getClass() != GridLayoutManager.class
-                && !(layoutManager instanceof StaggeredGridLayoutManager))
+                && !(layoutManager instanceof StaggeredGridLayoutManager)) {
             throw new IllegalArgumentException("Currently RecyclerViewHeader supports only LinearLayoutManager, GridLayoutManager and StaggeredGridLayoutManager.");
-        if (layoutManager instanceof LinearLayoutManager)
-            if (((LinearLayoutManager) layoutManager).getOrientation() != LinearLayoutManager.VERTICAL)
+        }
+        if (layoutManager instanceof LinearLayoutManager) {
+            if (((LinearLayoutManager) layoutManager).getOrientation() != LinearLayoutManager.VERTICAL) {
                 throw new IllegalArgumentException("Currently RecyclerViewHeader supports only VERTICAL orientation LayoutManagers.");
-            else if (layoutManager instanceof StaggeredGridLayoutManager)
-                if (((StaggeredGridLayoutManager) layoutManager).getOrientation() != StaggeredGridLayoutManager.VERTICAL)
+            } else if (layoutManager instanceof StaggeredGridLayoutManager) {
+                if (((StaggeredGridLayoutManager) layoutManager).getOrientation() != StaggeredGridLayoutManager.VERTICAL) {
                     throw new IllegalArgumentException("Currently RecyclerViewHeader supports only VERTICAL orientation StaggeredGridLayoutManagers.");
+                }
+            }
+        }
 
         if (!headerAlreadyAligned) {
             ViewParent parent = recyclerView.getParent();
             if (parent != null &&
                     !(parent instanceof LinearLayout) &&
                     !(parent instanceof RelativeLayout) &&
-                    !(parent instanceof FrameLayout))
+                    !(parent instanceof FrameLayout)) {
                 throw new IllegalStateException("Currently, NOT already aligned RecyclerViewHeader " +
                         "can only be used for RecyclerView with a parent of one of types: LinearLayout, FrameLayout, RelativeLayout.");
+            }
         }
     }
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
         mRecyclerWantsTouchEvent = mRecyclerView.onInterceptTouchEvent(ev);
-        if (mRecyclerWantsTouchEvent && ev.getAction() == MotionEvent.ACTION_DOWN)
+        if (mRecyclerWantsTouchEvent && ev.getAction() == MotionEvent.ACTION_DOWN) {
             mDownScroll = mCurrentScroll;
+        }
         return mRecyclerWantsTouchEvent || super.onInterceptTouchEvent(ev);
     }
 
@@ -245,12 +255,13 @@ public class RecyclerViewHeader extends RelativeLayout {
         private int mNumberOfChildren;
 
         public HeaderItemDecoration(RecyclerView.LayoutManager layoutManager, int height) {
-            if (layoutManager instanceof LinearLayoutManager)
+            if (layoutManager instanceof LinearLayoutManager) {
                 mNumberOfChildren = 1;
-            else if (layoutManager instanceof GridLayoutManager)
+            } else if (layoutManager instanceof GridLayoutManager) {
                 mNumberOfChildren = ((GridLayoutManager) layoutManager).getSpanCount();
-            else if (layoutManager instanceof StaggeredGridLayoutManager)
+            } else if (layoutManager instanceof StaggeredGridLayoutManager) {
                 mNumberOfChildren = ((StaggeredGridLayoutManager) layoutManager).getSpanCount();
+            }
             mHeaderHeight = height;
         }
 
@@ -258,10 +269,11 @@ public class RecyclerViewHeader extends RelativeLayout {
         public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
             super.getItemOffsets(outRect, view, parent, state);
             int value = (parent.getChildLayoutPosition(view) < mNumberOfChildren) ? mHeaderHeight : 0;
-            if (mReversed)
+            if (mReversed) {
                 outRect.bottom = value;
-            else
+            } else {
                 outRect.top = value;
+            }
         }
     }
 }

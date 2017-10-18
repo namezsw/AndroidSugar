@@ -40,8 +40,9 @@ public final class OkHttpManager {
      * @return OkHttpHelper实例
      */
     public static OkHttpManager getInstance(String cacheDirectoryPath, int cacheSize) {
-        if (instance == null)
+        if (instance == null) {
             instance = new OkHttpManager(cacheDirectoryPath, cacheSize);
+        }
         return instance;
     }
 

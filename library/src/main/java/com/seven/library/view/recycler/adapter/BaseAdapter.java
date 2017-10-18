@@ -129,7 +129,9 @@ public abstract class BaseAdapter<Item extends Serializable, VH extends BaseView
     @Override
     public VH onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(getLayoutId(viewType), parent, false);
-        if (mProcessDrawable != 0) view.setBackgroundResource(mProcessDrawable);
+        if (mProcessDrawable != 0) {
+            view.setBackgroundResource(mProcessDrawable);
+        }
         return getViewHolder(view, viewType);
     }
 
@@ -141,21 +143,24 @@ public abstract class BaseAdapter<Item extends Serializable, VH extends BaseView
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mOnItemClickListener != null)
+                if (mOnItemClickListener != null) {
                     mOnItemClickListener.onItemClick(item, position);
+                }
             }
         });
         itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
                 Logger.d("长按事件");
-                if (mOnItemLongClickListener != null)
+                if (mOnItemLongClickListener != null) {
                     mOnItemLongClickListener.onItemLongClick(item, position);
+                }
                 return true;
             }
         });
-        if (isStartAnimation)
+        if (isStartAnimation) {
             setAnimator(holder.itemView, position);
+        }
         try {
             onBindItem(holder, item, position);
         } catch (ParseException e) {

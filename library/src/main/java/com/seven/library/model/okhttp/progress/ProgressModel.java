@@ -75,10 +75,12 @@ public class ProgressModel implements Serializable, Parcelable {
     }
 
     public static final Creator<ProgressModel> CREATOR = new Creator<ProgressModel>() {
+        @Override
         public ProgressModel createFromParcel(Parcel source) {
             return new ProgressModel(source);
         }
 
+        @Override
         public ProgressModel[] newArray(int size) {
             return new ProgressModel[size];
         }

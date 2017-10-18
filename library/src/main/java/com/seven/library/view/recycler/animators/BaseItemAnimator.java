@@ -145,6 +145,7 @@ public class BaseItemAnimator extends DefaultItemAnimator {
             mAdditionsList.add(additions);
             mPendingAdditions.clear();
             Runnable adder = new Runnable() {
+                @Override
                 public void run() {
                     for (RecyclerView.ViewHolder holder : additions) {
                         animateAddImpl(holder);
@@ -242,11 +243,13 @@ public class BaseItemAnimator extends DefaultItemAnimator {
             dispatchMoveFinished(holder);
             return false;
         }
-        if (deltaX != 0)
+        if (deltaX != 0) {
             ViewCompat.setTranslationX(view, -deltaX);
+        }
 
-        if (deltaY != 0)
+        if (deltaY != 0) {
             ViewCompat.setTranslationY(view, -deltaY);
+        }
 
         mPendingMoves.add(new MoveInfo(holder, fromX, fromY, toX, toY));
         return true;
@@ -256,11 +259,13 @@ public class BaseItemAnimator extends DefaultItemAnimator {
         final View view = holder.itemView;
         final int deltaX = toX - fromX;
         final int deltaY = toY - fromY;
-        if (deltaX != 0)
+        if (deltaX != 0) {
             ViewCompat.animate(view).translationX(0);
+        }
 
-        if (deltaY != 0)
+        if (deltaY != 0) {
             ViewCompat.animate(view).translationY(0);
+        }
 
         // TODO: make EndActions end listeners instead, since end actions aren't called when
         // vpas are canceled (and can't end them. why?)
@@ -275,11 +280,13 @@ public class BaseItemAnimator extends DefaultItemAnimator {
 
             @Override
             public void onAnimationCancel(View view) {
-                if (deltaX != 0)
+                if (deltaX != 0) {
                     ViewCompat.setTranslationX(view, 0);
+                }
 
-                if (deltaY != 0)
+                if (deltaY != 0) {
                     ViewCompat.setTranslationY(view, 0);
+                }
             }
 
             @Override
@@ -372,19 +379,22 @@ public class BaseItemAnimator extends DefaultItemAnimator {
     private void endChangeAnimation(List<ChangeInfo> infoList, RecyclerView.ViewHolder item) {
         for (int i = infoList.size() - 1; i >= 0; i--) {
             ChangeInfo changeInfo = infoList.get(i);
-            if (endChangeAnimationIfNecessary(changeInfo, item))
+            if (endChangeAnimationIfNecessary(changeInfo, item)) {
                 if (changeInfo.oldHolder == null && changeInfo.newHolder == null) {
                     infoList.remove(changeInfo);
                 }
+            }
         }
     }
 
     private void endChangeAnimationIfNecessary(ChangeInfo changeInfo) {
-        if (changeInfo.oldHolder != null)
+        if (changeInfo.oldHolder != null) {
             endChangeAnimationIfNecessary(changeInfo, changeInfo.oldHolder);
+        }
 
-        if (changeInfo.newHolder != null)
+        if (changeInfo.newHolder != null) {
             endChangeAnimationIfNecessary(changeInfo, changeInfo.newHolder);
+        }
     }
 
     private boolean endChangeAnimationIfNecessary(ChangeInfo changeInfo, RecyclerView.ViewHolder item) {
@@ -432,8 +442,9 @@ public class BaseItemAnimator extends DefaultItemAnimator {
         for (int i = mChangesList.size() - 1; i >= 0; i--) {
             ArrayList<ChangeInfo> changes = mChangesList.get(i);
             endChangeAnimation(changes, item);
-            if (changes.isEmpty())
+            if (changes.isEmpty()) {
                 mChangesList.remove(i);
+            }
         }
         for (int i = mMovesList.size() - 1; i >= 0; i--) {
             ArrayList<MoveInfo> moves = mMovesList.get(i);
@@ -444,8 +455,9 @@ public class BaseItemAnimator extends DefaultItemAnimator {
                     ViewCompat.setTranslationX(view, 0);
                     dispatchMoveFinished(item);
                     moves.remove(j);
-                    if (moves.isEmpty())
+                    if (moves.isEmpty()) {
                         mMovesList.remove(i);
+                    }
                     break;
                 }
             }
@@ -455,27 +467,32 @@ public class BaseItemAnimator extends DefaultItemAnimator {
             if (additions.remove(item)) {
                 ViewCompat.setAlpha(view, 1);
                 dispatchAddFinished(item);
-                if (additions.isEmpty())
+                if (additions.isEmpty()) {
                     mAdditionsList.remove(i);
+                }
             }
         }
 
         // animations should be ended by the cancel above.
-        if (mRemoveAnimations.remove(item) && DEBUG)
+        if (mRemoveAnimations.remove(item) && DEBUG) {
             throw new IllegalStateException("after animation is cancelled, item should not be in "
                     + "mRemoveAnimations list");
+        }
 
-        if (mAddAnimations.remove(item) && DEBUG)
+        if (mAddAnimations.remove(item) && DEBUG) {
             throw new IllegalStateException("after animation is cancelled, item should not be in "
                     + "mAddAnimations list");
+        }
 
-        if (mChangeAnimations.remove(item) && DEBUG)
+        if (mChangeAnimations.remove(item) && DEBUG) {
             throw new IllegalStateException("after animation is cancelled, item should not be in "
                     + "mChangeAnimations list");
+        }
 
-        if (mMoveAnimations.remove(item) && DEBUG)
+        if (mMoveAnimations.remove(item) && DEBUG) {
             throw new IllegalStateException("after animation is cancelled, item should not be in "
                     + "mMoveAnimations list");
+        }
         dispatchFinishedWhenDone();
     }
 
@@ -500,8 +517,9 @@ public class BaseItemAnimator extends DefaultItemAnimator {
      * listeners.
      */
     private void dispatchFinishedWhenDone() {
-        if (!isRunning())
+        if (!isRunning()) {
             dispatchAnimationsFinished();
+        }
     }
 
     @Override
@@ -530,12 +548,14 @@ public class BaseItemAnimator extends DefaultItemAnimator {
             mPendingAdditions.remove(i);
         }
         count = mPendingChanges.size();
-        for (int i = count - 1; i >= 0; i--)
+        for (int i = count - 1; i >= 0; i--) {
             endChangeAnimationIfNecessary(mPendingChanges.get(i));
+        }
 
         mPendingChanges.clear();
-        if (!isRunning())
+        if (!isRunning()) {
             return;
+        }
 
         int listCount = mMovesList.size();
         for (int i = listCount - 1; i >= 0; i--) {
@@ -549,8 +569,9 @@ public class BaseItemAnimator extends DefaultItemAnimator {
                 ViewCompat.setTranslationX(view, 0);
                 dispatchMoveFinished(moveInfo.holder);
                 moves.remove(j);
-                if (moves.isEmpty())
+                if (moves.isEmpty()) {
                     mMovesList.remove(moves);
+                }
             }
         }
         listCount = mAdditionsList.size();
@@ -563,8 +584,9 @@ public class BaseItemAnimator extends DefaultItemAnimator {
                 ViewCompat.setAlpha(view, 1);
                 dispatchAddFinished(item);
                 additions.remove(j);
-                if (additions.isEmpty())
+                if (additions.isEmpty()) {
                     mAdditionsList.remove(additions);
+                }
             }
         }
         listCount = mChangesList.size();
@@ -573,8 +595,9 @@ public class BaseItemAnimator extends DefaultItemAnimator {
             count = changes.size();
             for (int j = count - 1; j >= 0; j--) {
                 endChangeAnimationIfNecessary(changes.get(j));
-                if (changes.isEmpty())
+                if (changes.isEmpty()) {
                     mChangesList.remove(changes);
+                }
             }
         }
 
@@ -587,8 +610,9 @@ public class BaseItemAnimator extends DefaultItemAnimator {
     }
 
     void cancelAll(List<RecyclerView.ViewHolder> viewHolders) {
-        for (int i = viewHolders.size() - 1; i >= 0; i--)
+        for (int i = viewHolders.size() - 1; i >= 0; i--) {
             ViewCompat.animate(viewHolders.get(i).itemView).cancel();
+        }
     }
 
     private static class VpaListenerAdapter implements ViewPropertyAnimatorListener {

@@ -40,6 +40,8 @@ public class MainFragment extends BaseFragment {
                 Intent intent = new Intent(getContext(), ChengYuActivity.class);
                 startActivity(intent);
                 break;
+            default:
+                break;
         }
     }
 }

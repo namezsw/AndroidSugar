@@ -132,18 +132,20 @@ public class ImageDraweeView extends SimpleDraweeView {
      * @param isNeedProcessor 是否需要后加载器
      */
     public void setImageURL(String url, boolean isNeedProcessor) {
-        if (TextUtils.isEmpty(url))
+        if (TextUtils.isEmpty(url)) {
             return;
+        }
         Uri uri = Uri.parse(url);
         ImageRequestBuilder imageRequestBuilder = ImageRequestBuilder.newBuilderWithSource(uri)
                 .setAutoRotateEnabled(true)
                 .setLocalThumbnailPreviewsEnabled(true)
                 .setResizeOptions(mResizeOptions);
         ImageRequest request;
-        if (isNeedProcessor)
+        if (isNeedProcessor) {
             request = imageRequestBuilder.setPostprocessor(mProcessor).build();
-        else
+        } else {
             request = imageRequestBuilder.build();
+        }
         DraweeController controller = Fresco.newDraweeControllerBuilder()
                 .setAutoPlayAnimations(true)
                 .setImageRequest(request)

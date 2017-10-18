@@ -108,9 +108,11 @@ public abstract class DownloadCallback implements Callback {
         bundle.putInt(KEY_STATUS_CODE, 500);
         if (e instanceof SocketTimeoutException || e instanceof UnknownHostException)
 //            bundle.putString(KEY_FAILURE_MSG, "请检查网络后重新尝试");
+        {
             bundle.putString(KEY_FAILURE_MSG, "");
-        else
+        } else {
             bundle.putString(KEY_FAILURE_MSG, e.getMessage());
+        }
         mHandler.sendMessage(Message.obtain(mHandler, RESULT_FAILURE, bundle));
     }
 

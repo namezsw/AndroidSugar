@@ -60,8 +60,9 @@ public abstract class BaseV4Fragment extends Fragment implements LifecycleProvid
         lifecycleSubject.onNext(FragmentEvent.CREATE_VIEW);
         unbinder = ButterKnife.bind(this, view);
         loading = LoadingHUD.build(getActivity());
-        if (useEventBus())
+        if (useEventBus()) {
             EventBusHelper.register(this);
+        }
         onViewCreateFinish(view, savedInstanceState);
     }
 
@@ -116,8 +117,9 @@ public abstract class BaseV4Fragment extends Fragment implements LifecycleProvid
         lifecycleSubject.onNext(FragmentEvent.DESTROY_VIEW);
         super.onDestroyView();
         unbinder.unbind();
-        if (useEventBus())
+        if (useEventBus()) {
             EventBusHelper.unregister(this);
+        }
     }
 
     @Override

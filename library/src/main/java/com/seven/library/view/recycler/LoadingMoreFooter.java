@@ -53,11 +53,13 @@ class LoadingMoreFooter extends RelativeLayout {
     private void initStyleable(Context context, AttributeSet attrs) {
         TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.LoadMoreRecyclerView);
         mLoadingText = array.getString(R.styleable.LoadMoreRecyclerView_loading_text);
-        if (StringUtils.isEmpty(mLoadingText))
+        if (StringUtils.isEmpty(mLoadingText)) {
             mLoadingText = context.getResources().getString(R.string.loadMore_loadingText);
+        }
         mNoMoreText = array.getString(R.styleable.LoadMoreRecyclerView_no_more_text);
-        if (StringUtils.isEmpty(mNoMoreText))
+        if (StringUtils.isEmpty(mNoMoreText)) {
             mNoMoreText = context.getResources().getString(R.string.loadMore_noMoreText);
+        }
         array.recycle();
     }
 

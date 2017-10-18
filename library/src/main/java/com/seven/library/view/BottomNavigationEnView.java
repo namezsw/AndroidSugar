@@ -115,8 +115,9 @@ public class BottomNavigationEnView extends BottomNavigationView {
             }
         } else {
             // if not record the mItemHeight, we need do nothing.
-            if (!visibilityHeightRecord)
+            if (!visibilityHeightRecord) {
                 return;
+            }
 
             // restore it
             setItemHeight(mItemHeight);
@@ -167,8 +168,9 @@ public class BottomNavigationEnView extends BottomNavigationView {
 
             } else {
                 // if not record the font size, we need do nothing.
-                if (!visibilityTextSizeRecord)
+                if (!visibilityTextSizeRecord) {
                     break;
+                }
 
                 // restore it
                 mLargeLabel.setTextSize(TypedValue.COMPLEX_UNIT_PX, mLargeLabelSize);
@@ -193,8 +195,9 @@ public class BottomNavigationEnView extends BottomNavigationView {
 
         } else {
             // if not record the mItemHeight, we need do nothing.
-            if (!visibilityHeightRecord)
+            if (!visibilityHeightRecord) {
                 return;
+            }
             // restore mItemHeight
             setItemHeight(mItemHeight);
         }
@@ -279,8 +282,9 @@ public class BottomNavigationEnView extends BottomNavigationView {
 
             } else {
                 // haven't change the value. It means it was the first call this method. So nothing need to do.
-                if (!animationRecord)
+                if (!animationRecord) {
                     return;
+                }
                 // enable animation
                 setField(button.getClass(), button, "mShiftAmount", mShiftAmount);
                 setField(button.getClass(), button, "mScaleUpFactor", mScaleUpFactor);
@@ -453,8 +457,9 @@ public class BottomNavigationEnView extends BottomNavigationView {
      * @return
      */
     private BottomNavigationMenuView getBottomNavigationMenuView() {
-        if (null == mMenuView)
+        if (null == mMenuView) {
             mMenuView = getField(getClass().getSuperclass(), this, "mMenuView");
+        }
         return mMenuView;
     }
 
@@ -464,8 +469,9 @@ public class BottomNavigationEnView extends BottomNavigationView {
      * @return
      */
     public BottomNavigationItemView[] getBottomNavigationItemViews() {
-        if (null != mButtons)
+        if (null != mButtons) {
             return mButtons;
+        }
         /*
          * 1 private final BottomNavigationMenuView mMenuView;
          * 2 private BottomNavigationItemView[] mButtons;
@@ -779,8 +785,9 @@ public class BottomNavigationEnView extends BottomNavigationView {
         @Override
         public void onPageSelected(final int position) {
             final BottomNavigationEnView bnve = mBnveRef.get();
-            if (null != bnve)
+            if (null != bnve) {
                 bnve.setCurrentItem(position);
+            }
 //            Log.d("onPageSelected", "--------- position " + position + " ------------");
         }
     }
@@ -827,14 +834,16 @@ public class BottomNavigationEnView extends BottomNavigationView {
             if (null != listener) {
                 boolean bool = listener.onNavigationItemSelected(item);
                 // if the selected is invalid, no need change the view pager
-                if (!bool)
+                if (!bool) {
                     return false;
+                }
             }
 
             // change view pager
             ViewPager viewPager = viewPagerRef.get();
-            if (null == viewPager)
+            if (null == viewPager) {
                 return false;
+            }
 
             viewPager.setCurrentItem(items.get(item.getItemId()), smoothScroll);
 

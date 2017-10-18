@@ -44,8 +44,9 @@ public abstract class BaseFragment extends RxFragment {
     public final View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mFragmentView = inflater.inflate(getLayoutId(), container, false);
         ViewGroup parent = (ViewGroup) mFragmentView.getParent();
-        if (parent != null)
+        if (parent != null) {
             parent.removeView(mFragmentView);
+        }
         return mFragmentView;
     }
 
@@ -53,8 +54,9 @@ public abstract class BaseFragment extends RxFragment {
     public final void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         unbinder = ButterKnife.bind(this, view);
-        if (useEventBus())
+        if (useEventBus()) {
             EventBusHelper.register(this);
+        }
         onViewCreatedFinish(savedInstanceState);
     }
 
@@ -68,10 +70,12 @@ public abstract class BaseFragment extends RxFragment {
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
-        if (useEventBus())
+        if (useEventBus()) {
             EventBusHelper.unregister(this);
-        if (mFragmentView != null)
+        }
+        if (mFragmentView != null) {
             ((ViewGroup) mFragmentView.getParent()).removeView(mFragmentView);
+        }
     }
 
     protected boolean useEventBus() {

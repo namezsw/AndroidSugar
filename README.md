@@ -27,4 +27,4 @@ MVP架构，使用RxJava2+Dagger2+Retrofit，各自功能模块相互独立，�
 * 各种工具类的封装；
 * 快速搭建一款结构清晰、可扩展性强的Android Application。
 * 更好的管理Gradle依赖库的版本；
-
+* 使用阿里巴巴Java编码规范；

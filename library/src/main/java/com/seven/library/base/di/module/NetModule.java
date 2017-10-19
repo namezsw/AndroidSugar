@@ -3,7 +3,6 @@ package com.seven.library.base.di.module;
 import android.app.Application;
 
 import com.seven.library.BaseApplication;
-import com.seven.library.model.okhttp.interceptor.CacheStrategyInterceptor;
 import com.seven.library.model.okhttp.interceptor.HeaderInfoInterceptor;
 import com.seven.library.util.AppUtils;
 import com.seven.library.util.Logger;
@@ -51,12 +50,11 @@ public class NetModule {
         HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
             @Override
             public void log(String message) {
-                Logger.d(message);
+                Logger.httpLog(message);
             }
         });
         loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         builder.addInterceptor(loggingInterceptor);
-        builder.addInterceptor(new CacheStrategyInterceptor());
         builder.addInterceptor(new HeaderInfoInterceptor(AppUtils.getAppVersionName(application)));
 
         builder.cache(cache);

@@ -106,6 +106,10 @@ public final class Logger {
         return settings;
     }
 
+    public static void httpLog(String message) {
+        d("HttpLog", message);
+    }
+
     public static void d(String message) {
         d(TAG, message);
     }

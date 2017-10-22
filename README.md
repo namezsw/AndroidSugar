@@ -19,12 +19,12 @@ MVP架构，使用RxJava2+Dagger2+Retrofit，各自功能模块相互独立，�
 * LeakCanary
 
 ## 特色
-* 架构清晰，结构简洁；
+* 架构清晰、结构简洁、可扩展性强；
 * MVP+RxJava2在实际项目中的应用，MVP中RxJava生命周期的管理；
 * Material Design使用示例；
 * Java8 Lambda表达式的用法；
 * 上述罗列的各种开源框架的使用方法及二次封装；
 * 各种工具类的封装；
-* 快速搭建一款结构清晰、可扩展性强的Android Application。
-* 更好的管理Gradle依赖库的版本；
+* 更好的管理Gradle依赖库版本的方式；
 * 使用阿里巴巴Java编码规范；
+* 可选择MVP创建模板mvp_template.zip，大幅提高Android开发效率；

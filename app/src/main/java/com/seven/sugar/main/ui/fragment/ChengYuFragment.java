@@ -29,7 +29,7 @@ public class ChengYuFragment extends BaseMVPFragment<ChengYuPresenter> implement
     @Override
     protected void injectComponent() {
         DaggerChengYuComponent.builder()
-                .appComponent((GlobalApplication.getInstance().getAppComponent()))
+                .appComponent(GlobalApplication.getInstance().getAppComponent())
                 .chengYuModule(new ChengYuModule(this))
                 .build()
                 .inject(this);

@@ -51,7 +51,7 @@ public class MainActivity extends BaseMVPActivity<MainPresenter> implements Main
     @Override
     protected void injectComponent() {
         DaggerMainComponent.builder()
-                .appComponent((GlobalApplication.getInstance().getAppComponent()))
+                .appComponent(GlobalApplication.getInstance().getAppComponent())
                 .mainModule(new MainModule(this))
                 .build()
                 .inject(this);
@@ -63,8 +63,8 @@ public class MainActivity extends BaseMVPActivity<MainPresenter> implements Main
     }
 
     @Override
-    protected void onViewCreateFinish(Bundle saveInstanceState) {
-        super.onViewCreateFinish(saveInstanceState);
+    protected void onViewCreated(Bundle saveInstanceState) {
+        super.onViewCreated(saveInstanceState);
         setSupportActionBar(toolbar);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);

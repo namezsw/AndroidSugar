@@ -30,7 +30,7 @@ public class ChengYuActivity extends BaseMVPActivity<ChengYuPresenter> implement
     @Override
     protected void injectComponent() {
         DaggerChengYuComponent.builder()
-                .appComponent((GlobalApplication.getInstance().getAppComponent()))
+                .appComponent(GlobalApplication.getInstance().getAppComponent())
                 .chengYuModule(new ChengYuModule(this))
                 .build()
                 .inject(this);
@@ -42,8 +42,8 @@ public class ChengYuActivity extends BaseMVPActivity<ChengYuPresenter> implement
     }
 
     @Override
-    protected void onViewCreateFinish(Bundle savedInstanceState) {
-        super.onViewCreateFinish(savedInstanceState);
+    protected void onViewCreated(Bundle savedInstanceState) {
+        super.onViewCreated(savedInstanceState);
         setSupportActionBar(toolbar);
     }
 

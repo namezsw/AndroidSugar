@@ -29,7 +29,7 @@ public abstract class BaseActivity extends RxAppCompatActivity {
     /**
      * 布局初始化完成的回调
      */
-    protected abstract void onViewCreateFinish(Bundle savedInstanceState);
+    protected abstract void onViewCreated(Bundle savedInstanceState);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +40,7 @@ public abstract class BaseActivity extends RxAppCompatActivity {
         if (useEventBus()) {
             EventBusHelper.register(this);
         }
-        onViewCreateFinish(savedInstanceState);
+        onViewCreated(savedInstanceState);
     }
 
     @Override

@@ -26,7 +26,7 @@ public abstract class BaseFragment extends RxFragment {
 
     protected abstract int getLayoutId();
 
-    public abstract void onViewCreatedFinish(Bundle savedInstanceState);
+    public abstract void onViewCreatedFinish(View view, Bundle savedInstanceState);
 
     @Override
     public void onAttach(Context context) {
@@ -57,7 +57,7 @@ public abstract class BaseFragment extends RxFragment {
         if (useEventBus()) {
             EventBusHelper.register(this);
         }
-        onViewCreatedFinish(savedInstanceState);
+        onViewCreatedFinish(view, savedInstanceState);
     }
 
     @Override

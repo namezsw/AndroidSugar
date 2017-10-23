@@ -41,8 +41,8 @@ public class ChengYuFragment extends BaseMVPFragment<ChengYuPresenter> implement
     }
 
     @Override
-    public void onViewCreatedFinish(@Nullable Bundle savedInstanceState) {
-        super.onViewCreatedFinish(savedInstanceState);
+    public void onViewCreatedFinish(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreatedFinish(view, savedInstanceState);
         tvInfo.setText(getArguments().getString("info"));
     }
 

@@ -2,6 +2,7 @@ package com.seven.library.base.ui.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.View;
 
 import com.seven.library.R;
 import com.seven.library.base.presenter.BasePresenter;
@@ -21,7 +22,7 @@ public abstract class BaseMVPFragment<P extends BasePresenter> extends BaseFragm
     protected P mPresenter;
 
     @Override
-    public void onViewCreatedFinish(@Nullable Bundle savedInstanceState) {
+    public void onViewCreatedFinish(View view, @Nullable Bundle savedInstanceState) {
         injectComponent();
     }
 

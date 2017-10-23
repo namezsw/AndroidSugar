@@ -28,7 +28,7 @@ public class MainFragment extends BaseFragment {
     }
 
     @Override
-    public void onViewCreatedFinish(@Nullable Bundle savedInstanceState) {
+    public void onViewCreatedFinish(View view, @Nullable Bundle savedInstanceState) {
         tvInfo.setText(getArguments().getString("info"));
     }
 

@@ -3,16 +3,16 @@ project.ext {
             compileSdkVersion: 25,
             buildToolsVersion: "25.0.2",
             applicationId    : "com.seven.sugar",
-            minSdkVersion    : 19,
+            minSdkVersion    : 17,
             targetSdkVersion : 25,
             versionCode      : 1,
             versionName      : "1.0"
     ]
 
     plugins = [
-            application  : "com.android.application",
-            library      : "com.android.library",
-            retrolambda  : "me.tatarka.retrolambda"
+            application: "com.android.application",
+            library    : "com.android.library",
+            retrolambda: "me.tatarka.retrolambda"
     ]
 
     version = [
@@ -21,47 +21,49 @@ project.ext {
             dagger2SdkVersion       : "2.10",
             okhttpSdkVersion        : "3.6.0",
             butterknifeSdkVersion   : "8.5.1",
-            frescoSdkVersion        : "0.12.0",
+            glideSdkVersion         : "4.2.0",
             rxlifecycleSdkVersion   : "2.1.0",
             canarySdkVersion        : "1.5"
     ]
 
     dependencies = [
             //android-support
-            "support-v4"                  : "com.android.support:support-v4:${version["androidSupportSdkVersion"]}",
-            "appcompat-v7"                : "com.android.support:appcompat-v7:${version["androidSupportSdkVersion"]}",
-            "design"                      : "com.android.support:design:${version["androidSupportSdkVersion"]}",
-            "recyclerview"                : "com.android.support:recyclerview-v7:${version["androidSupportSdkVersion"]}",
-            "cardview"                    : "com.android.support:cardview-v7:${version["androidSupportSdkVersion"]}",
+            "support-v4"                 : "com.android.support:support-v4:${version["androidSupportSdkVersion"]}",
+            "appcompat-v7"               : "com.android.support:appcompat-v7:${version["androidSupportSdkVersion"]}",
+            "design"                     : "com.android.support:design:${version["androidSupportSdkVersion"]}",
+            "recyclerview"               : "com.android.support:recyclerview-v7:${version["androidSupportSdkVersion"]}",
+            "cardview"                   : "com.android.support:cardview-v7:${version["androidSupportSdkVersion"]}",
 
             //network
-            "retrofit"                    : "com.squareup.retrofit2:retrofit:${version["retrofitSdkVersion"]}",
-            "retrofit-converter-gson"     : "com.squareup.retrofit2:converter-gson:${version["retrofitSdkVersion"]}",
-            "retrofit-adapter-rxjava"     : "com.squareup.retrofit2:adapter-rxjava2:${version["retrofitSdkVersion"]}",
-            "okhttp3"                     : "com.squareup.okhttp3:okhttp:${version["okhttpSdkVersion"]}",
-            "okhttp3-logging-interceptor" : "com.squareup.okhttp3:logging-interceptor:${version["okhttpSdkVersion"]}",
+            "retrofit"                   : "com.squareup.retrofit2:retrofit:${version["retrofitSdkVersion"]}",
+            "retrofit-converter-gson"    : "com.squareup.retrofit2:converter-gson:${version["retrofitSdkVersion"]}",
+            "retrofit-adapter-rxjava"    : "com.squareup.retrofit2:adapter-rxjava2:${version["retrofitSdkVersion"]}",
+            "okhttp3"                    : "com.squareup.okhttp3:okhttp:${version["okhttpSdkVersion"]}",
+            "okhttp3-logging-interceptor": "com.squareup.okhttp3:logging-interceptor:${version["okhttpSdkVersion"]}",
 
             //rx
-            "rxjava"                      : "io.reactivex.rxjava2:rxjava:2.1.1",
-            "rxandroid"                   : "io.reactivex.rxjava2:rxandroid:2.0.1",
-            "rxlifecycle"                 : "com.trello.rxlifecycle2:rxlifecycle:${version["rxlifecycleSdkVersion"]}",
-            "rxlifecycle-components"      : "com.trello.rxlifecycle2:rxlifecycle-components:${version["rxlifecycleSdkVersion"]}",
+            "rxjava"                     : "io.reactivex.rxjava2:rxjava:2.1.1",
+            "rxandroid"                  : "io.reactivex.rxjava2:rxandroid:2.0.1",
+            "rxlifecycle"                : "com.trello.rxlifecycle2:rxlifecycle:${version["rxlifecycleSdkVersion"]}",
+            "rxlifecycle-components"     : "com.trello.rxlifecycle2:rxlifecycle-components:${version["rxlifecycleSdkVersion"]}",
 
             //view
-            "butterknife"                 : "com.jakewharton:butterknife:${version["butterknifeSdkVersion"]}",
-            "butterknife-compiler"        : "com.jakewharton:butterknife-compiler:${version["butterknifeSdkVersion"]}",
-            "fresco"                      : "com.facebook.fresco:fresco:${version["frescoSdkVersion"]}",
-            "fresco-imagepipeline-okhttp3": "com.facebook.fresco:imagepipeline-okhttp3:${version["frescoSdkVersion"]}",
-            "ultra-ptr"                   : "in.srain.cube:ultra-ptr:1.0.11",
+            "butterknife"                : "com.jakewharton:butterknife:${version["butterknifeSdkVersion"]}",
+            "butterknife-compiler"       : "com.jakewharton:butterknife-compiler:${version["butterknifeSdkVersion"]}",
+            "glide"                      : "com.github.bumptech.glide:glide:${version["glideSdkVersion"]}",
+            "glide-okhttp3-integration"  : "com.github.bumptech.glide:okhttp3-integration:${version["glideSdkVersion"]}",
+            "glide-compiler"             : "com.github.bumptech.glide:compiler:${version["glideSdkVersion"]}",
+            "ultra-ptr"                  : "in.srain.cube:ultra-ptr:1.0.11",
 
             //tool
-            "dagger2"                     : "com.google.dagger:dagger:${version["dagger2SdkVersion"]}",
-            "dagger2-compiler"            : "com.google.dagger:dagger-compiler:${version["dagger2SdkVersion"]}",
-            "eventbus"                    : "org.greenrobot:eventbus:3.0.0",
-            "greendao"                    : "org.greenrobot:greendao:3.2.0",
-            "gson"                        : "com.google.code.gson:gson:2.8.0",
-            "fastjson"                    : "com.alibaba:fastjson:1.2.24",
-            "canary-debug"                : "com.squareup.leakcanary:leakcanary-android:${version["canarySdkVersion"]}",
-            "canary-release"              : "com.squareup.leakcanary:leakcanary-android-no-op:${version["canarySdkVersion"]}"
+            "dagger2"                    : "com.google.dagger:dagger:${version["dagger2SdkVersion"]}",
+            "dagger2-compiler"           : "com.google.dagger:dagger-compiler:${version["dagger2SdkVersion"]}",
+            "RxPermissions"              : "com.tbruyelle.rxpermissions:rxpermissions:0.9.4@aar",
+            "eventbus"                   : "org.greenrobot:eventbus:3.0.0",
+            "greendao"                   : "org.greenrobot:greendao:3.2.0",
+            "gson"                       : "com.google.code.gson:gson:2.8.0",
+            "fastjson"                   : "com.alibaba:fastjson:1.2.24",
+            "canary-debug"               : "com.squareup.leakcanary:leakcanary-android:${version["canarySdkVersion"]}",
+            "canary-release"             : "com.squareup.leakcanary:leakcanary-android-no-op:${version["canarySdkVersion"]}"
     ]
 }

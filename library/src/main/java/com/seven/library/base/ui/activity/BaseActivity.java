@@ -46,7 +46,8 @@ public abstract class BaseActivity extends RxAppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        loading.dismiss();
+        if (loading != null && loading.isShowing())
+            loading.dismiss();
     }
 
     @Override

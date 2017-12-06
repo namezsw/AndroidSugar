@@ -3,7 +3,6 @@ package com.seven.library;
 import android.app.Application;
 import android.content.Context;
 
-import com.facebook.drawee.backends.pipeline.Fresco;
 import com.seven.library.base.di.component.BaseComponent;
 import com.seven.library.base.di.component.DaggerBaseComponent;
 import com.seven.library.base.di.module.BaseModule;
@@ -11,7 +10,6 @@ import com.seven.library.controller.ActivityManager;
 import com.seven.library.controller.BaseActivityLifecycleCallback;
 import com.seven.library.util.Logger;
 import com.seven.library.util.SPUtils;
-import com.seven.library.view.image.ImagePipelineConfigFactory;
 
 /**
  * 基础Application
@@ -41,7 +39,7 @@ public abstract class BaseApplication extends Application {
         SPUtils.init(getLogTag());
         //Logger初始化
         Logger.init(getLogTag(), getSDCardPath()).hideThreadInfo()
-                .setLogLevel(isDebug() ? Logger.LogLevel.NONE : Logger.LogLevel.FULL)
+                .setLogLevel(BuildConfig.DEBUG ? Logger.LogLevel.NONE : Logger.LogLevel.FULL)
                 .setSaveLog(false);
         //Dagger2初始化
         baseComponent = DaggerBaseComponent.builder()
@@ -50,9 +48,6 @@ public abstract class BaseApplication extends Application {
         //ActivityLifecycle初始化
         activityLifecycleCallbacks = new BaseActivityLifecycleCallback(ActivityManager.getInstance());
         registerActivityLifecycleCallbacks(activityLifecycleCallbacks);
-        //Fresco初始化
-        Fresco.initialize(getApplicationContext(),
-                ImagePipelineConfigFactory.getOkHttpImagePipelineConfig(getApplicationContext(), baseComponent.okHttpClient()));
     }
 
     @Override

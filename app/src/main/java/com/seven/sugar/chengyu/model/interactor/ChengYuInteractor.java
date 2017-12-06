@@ -34,8 +34,8 @@ public class ChengYuInteractor implements ChengYuContract.Interactor {
     @Override
     public Observable<Model<ChengYuBean>> queryChengYu(String word) {
         Map<String, String> params = new HashMap<>();
-        params.put(Constants.Parameter.PARAM_KEY, Constants.JUHE_APP_KEY);
-        params.put(Constants.Parameter.PARAM_WORD, word);
+        params.put(Constants.ParamKey.PARAM_KEY, Constants.JUHE_APP_KEY);
+        params.put(Constants.ParamKey.PARAM_WORD, word);
         return juHeApi.queryChengYu(params)
                 .compose(RxRetrofitComposer.<Model<ChengYuBean>>applySchedulers());
     }

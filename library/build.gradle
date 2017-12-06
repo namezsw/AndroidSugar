@@ -47,12 +47,14 @@ dependencies {
     //view
     compile rootProject.ext.dependencies["butterknife"]
     annotationProcessor rootProject.ext.dependencies["butterknife-compiler"]
-    compile rootProject.ext.dependencies["fresco"]
-    compile rootProject.ext.dependencies["fresco-imagepipeline-okhttp3"]
+    compile rootProject.ext.dependencies["glide"]
+    compile rootProject.ext.dependencies["glide-okhttp3-integration"]
+    annotationProcessor rootProject.ext.dependencies["glide-compiler"]
     compile rootProject.ext.dependencies["ultra-ptr"]
     //tool
     compile rootProject.ext.dependencies["dagger2"]
     annotationProcessor rootProject.ext.dependencies["dagger2-compiler"]
+    compile rootProject.ext.dependencies["RxPermissions"]
     compile rootProject.ext.dependencies["eventbus"]
     compile rootProject.ext.dependencies["greendao"]
     compile rootProject.ext.dependencies["gson"]

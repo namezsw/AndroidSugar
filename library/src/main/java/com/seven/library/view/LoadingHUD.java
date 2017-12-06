@@ -66,6 +66,7 @@ public class LoadingHUD extends Dialog {
 
     @Override
     public void dismiss() {
+        ivIcon.clearAnimation();
         super.dismiss();
     }
 

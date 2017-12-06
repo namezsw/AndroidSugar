@@ -29,7 +29,7 @@ public class GlobalApplication extends BaseApplication {
                 .baseComponent(baseComponent)
                 .build();
         //LeakCanary初始化
-        if (isDebug()) {
+        if (BuildConfig.DEBUG) {
             LeakCanary.install(this);
         }
     }

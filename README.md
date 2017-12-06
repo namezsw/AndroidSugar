@@ -11,9 +11,10 @@ MVP架构，使用RxJava2+Dagger2+Retrofit，各自功能模块相互独立，�
 * OKHttp3
 * ButterKnife
 * EventBus3
+* RxPermissions
 * RetroLambda
 * FastJson
-* Fresco
+* Glide
 * GreenDao
 * Ultra-Pull-To-Refresh
 * LeakCanary
@@ -27,4 +28,4 @@ MVP架构，使用RxJava2+Dagger2+Retrofit，各自功能模块相互独立，�
 * 各种工具类的封装；
 * 更好的管理Gradle依赖库版本的方式；
 * 使用阿里巴巴Java编码规范；
-* 可选择MVP创建模板mvp_template.zip，大幅提高Android开发效率；
+* 可选择MVP创建模板mvp_template.zip，大幅提高开发效率；

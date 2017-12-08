@@ -1,22 +1,21 @@
 project.ext {
     android = [
-            compileSdkVersion: 25,
-            buildToolsVersion: "25.0.2",
+            compileSdkVersion: 26,
+            buildToolsVersion: "26.0.2",
             applicationId    : "com.seven.sugar",
             minSdkVersion    : 17,
-            targetSdkVersion : 25,
+            targetSdkVersion : 26,
             versionCode      : 1,
-            versionName      : "1.0"
+            versionName      : "1.0.0"
     ]
 
     plugins = [
             application: "com.android.application",
             library    : "com.android.library",
-            retrolambda: "me.tatarka.retrolambda"
     ]
 
     version = [
-            androidSupportSdkVersion: "25.1.0",
+            androidSupportSdkVersion: "26.1.0",
             retrofitSdkVersion      : "2.3.0",
             dagger2SdkVersion       : "2.10",
             okhttpSdkVersion        : "3.6.0",

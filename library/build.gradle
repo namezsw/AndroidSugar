@@ -1,9 +1,13 @@
 apply plugin: rootProject.ext.plugins.library
-apply plugin: rootProject.ext.plugins.retrolambda
 
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
     buildToolsVersion rootProject.ext.android.buildToolsVersion
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 
     defaultConfig {
         minSdkVersion rootProject.ext.android.minSdkVersion

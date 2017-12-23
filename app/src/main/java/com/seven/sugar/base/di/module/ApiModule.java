@@ -1,12 +1,11 @@
 package com.seven.sugar.base.di.module;
 
-import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.seven.library.base.di.scope.AppScope;
+import com.seven.library.model.retrofit.RetrofitFactory;
 import com.seven.sugar.base.BaseApi;
 import com.seven.sugar.base.retrofit.api.JuHeApi;
-import com.seven.library.model.retrofit.RetrofitFactory;
 
 import dagger.Module;
 import dagger.Provides;
@@ -24,7 +23,6 @@ public final class ApiModule {
     @AppScope
     Gson provideGson() {
         GsonBuilder gsonBuilder = new GsonBuilder();
-        gsonBuilder.setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES);
         return gsonBuilder.create();
     }
 

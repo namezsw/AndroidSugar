@@ -54,10 +54,10 @@ public abstract class BaseFragment extends RxFragment {
     public final void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         unbinder = ButterKnife.bind(this, view);
+        onViewCreatedFinish(view, savedInstanceState);
         if (useEventBus()) {
             EventBusHelper.register(this);
         }
-        onViewCreatedFinish(view, savedInstanceState);
     }
 
     @Override
@@ -69,10 +69,10 @@ public abstract class BaseFragment extends RxFragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        unbinder.unbind();
         if (useEventBus()) {
             EventBusHelper.unregister(this);
         }
+        unbinder.unbind();
         if (mFragmentView != null) {
             ((ViewGroup) mFragmentView.getParent()).removeView(mFragmentView);
         }

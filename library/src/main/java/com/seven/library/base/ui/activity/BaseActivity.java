@@ -37,10 +37,10 @@ public abstract class BaseActivity extends RxAppCompatActivity {
         setContentView(getLayoutId());
         unbinder = ButterKnife.bind(this);
         loading = LoadingHUD.build(this);
+        onViewCreated(savedInstanceState);
         if (useEventBus()) {
             EventBusHelper.register(this);
         }
-        onViewCreated(savedInstanceState);
     }
 
     @Override
@@ -53,10 +53,10 @@ public abstract class BaseActivity extends RxAppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        unbinder.unbind();
         if (useEventBus()) {
             EventBusHelper.unregister(this);
         }
+        unbinder.unbind();
     }
 
     protected boolean useEventBus() {
